@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sense — Cuidar da saúde como se estivesse em casa</title>
+  <meta name="description" content="Clínica Sense em Uberaba: consultas, exames e check-ups com mais de 50 profissionais e 20 especialidades. Cuide da sua saúde com quem entende de gente." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" />
+  <style>
+    :root {
+      --primary: #e06253;
+      --primary-hover: #c64f41;
+      --primary-soft: #ffd0b2;
+      --primary-cream: #fbf3ec;
+      --consulta: #750d37;
+      --pink-soft: #feddd6;
+      --ink: #062533;
+      --body: #1f3340;
+      --muted: #6a7a85;
+      --hairline: #eaeaea;
+      --hairline-soft: #f3f3f3;
+      --canvas: #ffffff;
+      --surface-soft: #f7f7f7;
+      --surface-strong: #f1f1f1;
+      --accent-blue: #0d5074;
+      --shadow-card: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.08) 0 4px 8px 0;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-xl: 32px;
+      --r-full: 9999px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Satoshi', -apple-system, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--canvas);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- top nav ---------- */
+    .nav {
+      height: 80px;
+      border-bottom: 1px solid var(--hairline);
+      background: var(--canvas);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+    }
+    .logo-img {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+    .footer-brand .logo-img { height: 30px; }
+    .nav-links {
+      display: flex; gap: 32px;
+      align-items: center;
+    }
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      padding: 8px 0;
+      position: relative;
+    }
+    .nav-link:hover { color: var(--primary); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center; gap: 8px;
+      background: #e06253;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--r-full);
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.15s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- floating WhatsApp button ---------- */
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: var(--r-full);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.35), 0 2px 6px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .floating-wa:hover {
+      background: #20bf5a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.45), 0 4px 10px rgba(0,0,0,0.16);
+    }
+    .floating-wa svg {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 540px) {
+      .floating-wa {
+        bottom: 16px;
+        right: 16px;
+        padding: 12px 18px;
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      padding: 72px 0 64px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center; gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+      background: var(--primary-cream);
+      padding: 6px 14px;
+      border-radius: var(--r-full);
+      margin-bottom: 24px;
+    }
+    .eyebrow-dot {
+      width: 6px; height: 6px; border-radius: var(--r-full);
+      background: var(--primary);
+    }
+    .h1 {
+      font-size: 46px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      margin: 0 0 20px;
+      color: var(--ink);
+    }
+    .h1 em { color: var(--primary); font-style: normal; }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--body);
+      max-width: 480px;
+      margin: 0 0 32px;
+    }
+    .quick-actions {
+      display: flex; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .qa-pill {
+      display: inline-flex;
+      align-items: center; gap: 8px;
+      padding: 11px 16px;
+      border-radius: var(--r-full);
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--ink);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .qa-pill .qa-icon { width: 16px; height: 16px; }
+    .qa-pill:hover {
+      border-color: var(--ink);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-card);
+    }
+    .qa-pill.primary {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .qa-pill.primary:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .qa-icon {
+      width: 18px; height: 18px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* hero illustration card */
+    .hero-card {
+      background: linear-gradient(135deg, var(--primary-cream) 0%, var(--pink-soft) 100%);
+      border-radius: var(--r-xl);
+      padding: 32px;
+      position: relative;
+      aspect-ratio: 1.05 / 1;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: var(--r-full);
+      background: var(--primary);
+      opacity: 0.08;
+      top: -80px; right: -80px;
+      z-index: 1;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+    .floating-card {
+      position: absolute;
+      background: var(--canvas);
+      border-radius: var(--r-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 2;
+    }
+    .fc-1 { top: 32px; left: 32px; animation: float-soft 4.5s ease-in-out infinite; }
+    .fc-2 { bottom: 80px; right: 24px; animation: float-soft 4.5s ease-in-out 0.8s infinite; }
+    .fc-3 { bottom: 24px; left: 48px; animation: float-soft 4.5s ease-in-out 1.6s infinite; }
+    @keyframes float-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fc-1, .fc-2, .fc-3 { animation: none; }
+    }
+    .fc-icon {
+      width: 36px; height: 36px;
+      border-radius: var(--r-full);
+      background: var(--primary-cream);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .fc-2 .fc-icon { background: rgba(13,80,116,0.1); color: var(--accent-blue); }
+    .fc-3 .fc-icon { background: var(--pink-soft); color: var(--consulta); }
+    .fc-meta {
+      font-size: 12px; color: var(--muted); font-weight: 400;
+    }
+
+    /* ---------- stats strip ---------- */
+    .stats {
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 32px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    @media (max-width: 700px) {
+      .stats-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    }
+    .stat {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    @media (max-width: 700px) {
+      .stat { justify-content: center; }
+    }
+    .stat-num {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ---------- section base ---------- */
+    section { padding: 80px 0; }
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 48px;
+    }
+    .section-head.centered { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 14px;
+    }
+    .h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: var(--ink);
+      margin: 0 0 16px;
+    }
+    .h2 em { color: var(--primary); font-style: normal; }
+    .section-sub {
+      font-size: 17px;
+      color: var(--body);
+      margin: 0;
+    }
+
+    /* ---------- specialties ---------- */
+    .specialties .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: none;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 880px) {
+      .specialties .section-head { flex-direction: column; align-items: flex-start; }
+    }
+    .esp-carousel-wrap {
+      position: relative;
+      margin: 0 -24px;
+    }
+    .esp-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 24px;
+      padding: 4px 24px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .esp-carousel::-webkit-scrollbar { display: none; }
+    .esp-card {
+      flex: 0 0 320px;
+      aspect-ratio: 9 / 16;
+      border-radius: var(--r-lg);
+      background-color: var(--esp-bg, var(--primary));
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.7) 100%),
+        var(--esp-img, none);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      scroll-snap-align: start;
+      overflow: hidden;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .esp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: rgba(0,0,0,0.12) 0 12px 24px -8px;
+    }
+    .esp-tag {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.95);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--r-full);
+      letter-spacing: 0.2px;
+      backdrop-filter: blur(4px);
+    }
+    .esp-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+      color: #fff;
+      margin: 0;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    @media (max-width: 700px) {
+      .esp-card { flex: 0 0 260px; }
+      .esp-title { font-size: 21px; }
+    }
+
+    .specialty-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 40px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--r-full);
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-cream);
+    }
+    .btn-text {
+      display: inline-flex;
+      align-items: center; gap: 6px;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 0;
+      border-bottom: 2px solid var(--ink);
+      white-space: nowrap;
+    }
+    .btn-text:hover { color: var(--primary); border-color: var(--primary); }
+
+    /* ---------- 360 benefits ---------- */
+    .benefits {
+      background: var(--surface-soft);
+    }
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 880px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+    }
+    .benefit {
+      background: var(--canvas);
+      padding: 32px 28px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--hairline);
+    }
+    .benefit-num {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.4px;
+      margin-bottom: 20px;
+      padding: 4px 10px;
+      background: var(--primary-cream);
+      border-radius: var(--r-full);
+    }
+    .benefit h3 {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .benefit p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    /* ---------- exams ---------- */
+    .exams-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 880px) {
+      .exams-layout { grid-template-columns: 1fr; }
+    }
+    .exam-card {
+      border-radius: var(--r-lg);
+      padding: 36px;
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      transition: all 0.2s ease;
+    }
+    .exam-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+    .exam-card.imagem {
+      background: linear-gradient(160deg, var(--primary-cream) 0%, var(--canvas) 100%);
+      border-color: transparent;
+    }
+    .exam-card.lab {
+      background: linear-gradient(160deg, rgba(13,80,116,0.06) 0%, var(--canvas) 100%);
+      border-color: transparent;
+    }
+    .exam-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin: 0 0 8px;
+    }
+    .exam-meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+    .exam-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .exam-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--hairline-soft);
+      font-size: 15px;
+    }
+    .exam-list li:last-child { border-bottom: none; }
+    .exam-check {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+    .lab .exam-check { color: var(--accent-blue); }
+    .exam-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .more-link {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ---------- check-up offer ---------- */
+    .checkup {
+      background: var(--ink);
+      color: #fff;
+    }
+    .checkup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 880px) {
+      .checkup-grid { grid-template-columns: 1fr; }
+    }
+    .checkup .h2 { color: #fff; }
+    .checkup .section-sub { color: #c8d3da; }
+    .price-tag {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      background: var(--primary);
+      padding: 16px 24px;
+      border-radius: var(--r-md);
+      margin: 24px 0 32px;
+    }
+    .price-prefix { font-size: 14px; opacity: 0.85; }
+    .price-value { font-size: 32px; font-weight: 700; letter-spacing: -1px; }
+    .price-suffix { font-size: 13px; opacity: 0.85; }
+    .checkup-includes {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .checkup-includes li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+    }
+    .ck-dot {
+      width: 24px; height: 24px;
+      border-radius: var(--r-full);
+      background: rgba(224,98,83,0.18);
+      color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .checkup-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ck-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      border-radius: var(--r-md);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .ck-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--primary);
+    }
+    .ck-card-text strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .ck-card-text span {
+      font-size: 13px;
+      color: #a8b3bc;
+    }
+    .ck-arrow {
+      color: var(--primary);
+      width: 20px; height: 20px;
+    }
+
+    /* ---------- (R)evolution comparison ---------- */
+    .revolution {
+      padding-top: 80px;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    @media (max-width: 880px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+    .compare-card {
+      border-radius: var(--r-lg);
+      padding: 32px;
+      border: 1px solid var(--hairline);
+    }
+    .compare-card.others {
+      background: var(--surface-soft);
+    }
+    .compare-card.sense {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .compare-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .compare-card.sense .compare-head { border-color: rgba(255,255,255,0.12); }
+    .compare-mark {
+      width: 32px; height: 32px;
+      border-radius: var(--r-full);
+      background: var(--surface-strong);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .sense .compare-mark {
+      background: var(--primary);
+      color: #fff;
+    }
+    .compare-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .compare-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .compare-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .compare-list .icon {
+      width: 22px; height: 22px;
+      border-radius: var(--r-full);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .others .compare-list .icon { background: var(--hairline); color: var(--muted); }
+    .sense .compare-list .icon { background: var(--primary); color: #fff; }
+
+    /* (Bloco "Seja Dr(a). Sense" preservado em _para-pagina-profissionais.html) */
+
+    /* ---------- Sense Consulta CTA (B2C) ---------- */
+    .patient-cta { padding: 80px 0; }
+    .sc-card {
+      background: #750d37;
+      border-radius: var(--r-xl);
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      color: #fbf3ec;
+    }
+    @media (max-width: 880px) {
+      .sc-card { padding: 40px 28px; grid-template-columns: 1fr; }
+    }
+    .sc-card::before {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      background: url('images/brand/sense-consulta-s.png') center / contain no-repeat;
+      opacity: 0.22;
+      top: -60px; right: -60px;
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+    .sc-card::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      background: url('images/brand/sense-consulta-asterisco.png') center / contain no-repeat;
+      opacity: 0.20;
+      bottom: -70px; left: 28%;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+    .sc-content { position: relative; z-index: 1; }
+    .sc-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #fcc5df;
+      margin-bottom: 14px;
+    }
+    .sc-eyebrow::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: var(--r-full);
+      background: #fcc5df;
+      box-shadow: 0 0 0 3px rgba(252,197,223,0.25);
+    }
+    .sc-card h2 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.1;
+      margin: 0 0 16px;
+      color: #fbf3ec;
+      max-width: 460px;
+    }
+    .sc-card h2 em { color: #fcc5df; font-style: normal; }
+    .sc-card p {
+      font-size: 17px;
+      color: rgba(251,243,236,0.82);
+      max-width: 560px;
+      margin: 0 0 28px;
+    }
+    .btn-primary.sc-btn {
+      background: #fcc5df;
+      color: #750d37;
+    }
+    .btn-primary.sc-btn:hover {
+      background: #f8aecf;
+      color: #5a0a2a;
+    }
+    .sc-bullets {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: grid;
+      gap: 12px;
+      position: relative; z-index: 1;
+    }
+    .sc-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(252,197,223,0.10);
+      border: 1px solid rgba(252,197,223,0.18);
+      padding: 16px 20px;
+      border-radius: var(--r-md);
+      font-size: 15px;
+      font-weight: 500;
+      color: #fbf3ec;
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.3s ease,
+                  border-color 0.3s ease;
+      cursor: default;
+    }
+    .sc-bullets li:hover {
+      transform: scale(1.04);
+      background: rgba(252,197,223,0.18);
+      border-color: rgba(252,197,223,0.32);
+    }
+    .sc-check {
+      width: 22px; height: 22px;
+      border-radius: var(--r-full);
+      background: #fcc5df;
+      color: #750d37;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sc-check svg { width: 12px; height: 12px; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: var(--r-sm);
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.15s ease;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      background: var(--canvas);
+      border-top: 1px solid var(--hairline);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 880px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 540px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 16px 0 24px;
+      max-width: 320px;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-socials a {
+      width: 38px; height: 38px;
+      border-radius: var(--r-full);
+      background: var(--surface-soft);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      transition: all 0.15s ease;
+    }
+    .footer-socials a:hover { background: var(--primary); color: #fff; }
+    .footer-col h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+    .footer-col ul {
+      list-style: none; padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col a, .footer-col li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-row-icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-row-icon svg {
+      width: 16px; height: 16px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .legal {
+      border-top: 1px solid var(--hairline);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      .h1 { font-size: 40px; letter-spacing: -1px; }
+      .h2 { font-size: 30px; }
+      section { padding: 56px 0; }
+      .hero { padding: 48px 0 40px; }
+      .hero-card { aspect-ratio: 1.2 / 1; padding: 24px; }
+      .floating-card { font-size: 12px; padding: 10px 14px; }
+      .fc-icon { width: 28px; height: 28px; }
+      .stat-num { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="logo" aria-label="Sense">
+        <img src="images/brand/sense-logo.png" alt="Sense" class="logo-img" />
+      </a>
+      <nav class="nav-links">
+        <a href="#especialidades" class="nav-link">Especialidades</a>
+        <a href="#exames" class="nav-link">Exames</a>
+        <a href="#checkup" class="nav-link">Check-up</a>
+      </nav>
+      <a href="#especialidades" class="nav-cta">
+        Encontre um Especialista
+      </a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Clínica em Uberaba — MG</span>
+        <h1 class="h1">Cuide da sua saúde como se estivesse <em>em casa</em>.</h1>
+        <div class="quick-actions">
+          <a href="#especialidades" class="qa-pill primary">
+            <svg class="qa-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+            Agendar consulta
+          </a>
+          <a href="#exames" class="qa-pill">
+            <svg class="qa-icon" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M11 17a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/></svg>
+            Agendar exame
+          </a>
+          <a href="#checkup" class="qa-pill">
+            <svg class="qa-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg>
+            Agendar check-up
+          </a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img class="hero-img" src="images/hero-mulher.png" alt="Mulher tranquila no sofá agendando consulta pelo celular" />
+        <div class="floating-card fc-1">
+          <div class="fc-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div>
+            Cardiologista<br />
+            <span class="fc-meta">Hoje · 14h30</span>
+          </div>
+        </div>
+        <div class="floating-card fc-2">
+          <div class="fc-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+          </div>
+          <div>
+            Resultado pronto<br />
+            <span class="fc-meta">Hemograma · Lab</span>
+          </div>
+        </div>
+        <div class="floating-card fc-3">
+          <div class="fc-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
+          </div>
+          <div>
+            Check-up completo<br />
+            <span class="fc-meta">a partir de R$ 170</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS STRIP ============ -->
+  <section class="stats" style="padding: 32px 0">
+    <div class="container stats-grid">
+      <div class="stat">
+        <span class="stat-num">+60</span>
+        <span class="stat-label">profissionais</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">+30</span>
+        <span class="stat-label">especialidades</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">+1.000</span>
+        <span class="stat-label">tipos de exames</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPECIALTIES ============ -->
+  <section class="specialties" id="especialidades">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">Especialidades</p>
+          <h2 class="h2">Profissionais de excelência<br />pra cada momento da sua vida.</h2>
+        </div>
+        <a href="#" class="btn-text">
+          Conhecer profissionais
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="esp-carousel-wrap">
+        <div class="esp-carousel" id="espCarousel">
+          <a class="esp-card" href="#" style="--esp-bg: #e06253; --esp-img: url('images/especialidades/psicologia.png');">
+            <span class="esp-tag">Saúde mental</span>
+            <h3 class="esp-title">Cuide da sua mente sem julgamento</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #062533; --esp-img: url('images/especialidades/cardiologia.png');">
+            <span class="esp-tag">Coração</span>
+            <h3 class="esp-title">Acompanhamento cardíaco preventivo</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #750d37; --esp-img: url('images/especialidades/pediatria.png');">
+            <span class="esp-tag">Crianças</span>
+            <h3 class="esp-title">Os primeiros anos com quem entende</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #0d5074; --esp-img: url('images/especialidades/ginecologia.png');">
+            <span class="esp-tag">Mulher</span>
+            <h3 class="esp-title">Saúde da mulher no seu tempo</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #c64f41; --esp-img: url('images/especialidades/dermatologia.png');">
+            <span class="esp-tag">Pele</span>
+            <h3 class="esp-title">Pele saudável dos pés à cabeça</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #062533; --esp-img: url('images/especialidades/nutricao.png');">
+            <span class="esp-tag">Alimentação</span>
+            <h3 class="esp-title">Nutrição que faz sentido pra rotina</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #750d37; --esp-img: url('images/especialidades/ortopedia.png');">
+            <span class="esp-tag">Movimento</span>
+            <h3 class="esp-title">Movimento sem dor, vida com qualidade</h3>
+          </a>
+          <a class="esp-card" href="#" style="--esp-bg: #0d5074; --esp-img: url('images/especialidades/endocrinologia.png');">
+            <span class="esp-tag">Hormônios</span>
+            <h3 class="esp-title">Equilíbrio hormonal, energia em dia</h3>
+          </a>
+        </div>
+      </div>
+      <div class="specialty-grid">
+        <span class="chip">Psicologia</span>
+        <span class="chip">Psiquiatria</span>
+        <span class="chip">Neurologia</span>
+        <span class="chip">Saúde mental</span>
+        <span class="chip">Autoestima</span>
+        <span class="chip">Emagrecimento</span>
+        <span class="chip">Longevidade</span>
+        <span class="chip">Saúde da mulher</span>
+        <span class="chip">Saúde da criança</span>
+        <span class="chip">Nutrologia</span>
+        <span class="chip">Nutrição</span>
+        <span class="chip">Medicina do esporte</span>
+        <span class="chip">Endocrinologia</span>
+        <span class="chip">Dermatologia</span>
+        <span class="chip">Estética facial e corporal</span>
+        <span class="chip">Clínico geral</span>
+        <span class="chip">Cardiologia</span>
+        <span class="chip">Fisioterapia</span>
+        <span class="chip">Geriatria</span>
+        <span class="chip">Ortopedia</span>
+        <span class="chip">Cirurgia vascular</span>
+        <span class="chip">Ginecologia e obstetrícia</span>
+        <span class="chip">Psicologia infantil</span>
+        <span class="chip">Pediatria</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 360 BENEFITS ============ -->
+  <section class="benefits">
+    <div class="container">
+      <div class="section-head" style="max-width: 480px;">
+        <p class="section-eyebrow">Avaliação 360º</p>
+        <h2 class="h2">Uma clínica para tudo.<br />E tudo em <em>uma clínica</em>.</h2>
+        <p class="section-sub">Time multidisciplinar acompanha você do agendamento ao retorno.</p>
+      </div>
+      <div class="benefit-grid">
+        <article class="benefit">
+          <span class="benefit-num">01 — TIME</span>
+          <h3>Acompanhamento de profissionais multidisciplinares</h3>
+          <p>Médicos, nutricionistas, psicólogos e fisioterapeutas conversando entre si pra entender você por inteiro.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit-num">02 — REDE</span>
+          <h3>Apoio de profissionais e empresas de alto padrão</h3>
+          <p>Trabalhamos com laboratórios, clínicas de imagem e parceiros que mantêm o nível de excelência da Sense.</p>
+        </article>
+        <article class="benefit">
+          <span class="benefit-num">03 — JORNADA</span>
+          <h3>Experiência única em toda a jornada</h3>
+          <p>Da primeira mensagem ao retorno, cada interação é pensada pra ser simples, humana e sem burocracia.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXAMS ============ -->
+  <section id="exames">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow">Exames</p>
+        <h2 class="h2">Os exames mais procurados,<br />prontos pra você agendar.</h2>
+        <p class="section-sub">Mais de 1.000 tipos de exames laboratoriais e de imagem em parceria com laboratórios de referência.</p>
+      </div>
+      <div class="exams-layout">
+        <article class="exam-card imagem">
+          <h3>Exames de Imagem</h3>
+          <p class="exam-meta">4 mais procurados</p>
+          <ul class="exam-list">
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ultrassom abdominal</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ressonância magnética</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Mamografia</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ultrassom de tireoide</li>
+          </ul>
+          <div class="exam-foot">
+            <a href="#" class="btn-text">Agendar exame
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="more-link">e mais 30+</span>
+          </div>
+        </article>
+        <article class="exam-card lab">
+          <h3>Exames Laboratoriais</h3>
+          <p class="exam-meta">9 mais procurados</p>
+          <ul class="exam-list">
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hemograma</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Glicose</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Colesterol total + frações</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Triglicerídeos · Insulina · Ureia</li>
+            <li><svg class="exam-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Magnésio · Zinco · Creatinina</li>
+          </ul>
+          <div class="exam-foot">
+            <a href="#" class="btn-text">Agendar exame
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="more-link">+1.000 tipos</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHECK-UP OFFER ============ -->
+  <section class="checkup" id="checkup">
+    <div class="container checkup-grid">
+      <div>
+        <p class="section-eyebrow" style="color: var(--primary-soft);">Check-up Sense</p>
+        <h2 class="h2">Já deu um <em>check</em> na sua saúde este ano?</h2>
+        <div class="price-tag">
+          <span class="price-prefix">a partir de</span>
+          <span class="price-value">R$ 170</span>
+          <span class="price-suffix">completo</span>
+        </div>
+        <p class="section-sub" style="margin-bottom: 24px;">Inclui consulta clínica, exames laboratoriais e retorno para discutir os resultados com o seu médico.</p>
+        <ul class="checkup-includes">
+          <li><span class="ck-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Consulta clínica com Dr(a) titular</li>
+          <li><span class="ck-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Exames laboratoriais essenciais</li>
+          <li><span class="ck-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Retorno com discussão de resultados</li>
+        </ul>
+      </div>
+      <div class="checkup-cards">
+        <a href="#" class="ck-card">
+          <div class="ck-card-text">
+            <strong>Check-up de Rotina</strong>
+            <span>Clínico Geral · 1h30</span>
+          </div>
+          <svg class="ck-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="ck-card">
+          <div class="ck-card-text">
+            <strong>Check-up da Mulher</strong>
+            <span>Ginecologista · 1h30</span>
+          </div>
+          <svg class="ck-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="ck-card">
+          <div class="ck-card-text">
+            <strong>Check-up Cardíaco</strong>
+            <span>Cardiologista · 2h</span>
+          </div>
+          <svg class="ck-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON / (R)EVOLUTION ============ -->
+  <section class="revolution">
+    <div class="container">
+      <div class="section-head centered">
+        <p class="section-eyebrow">A (r)evolução do cuidado</p>
+        <h2 class="h2">Pode comparar.<br />Cuidar da saúde na Sense faz <em>mais sentido</em>.</h2>
+        <p class="section-sub">Lado a lado, dá pra ver por que a gente é diferente das outras clínicas.</p>
+      </div>
+      <div class="compare-grid">
+        <article class="compare-card others">
+          <div class="compare-head">
+            <div class="compare-mark">×</div>
+            <span class="compare-title">Outras clínicas</span>
+          </div>
+          <ul class="compare-list">
+            <li><span class="icon">×</span> Você liga, espera, fala com várias pessoas pra agendar</li>
+            <li><span class="icon">×</span> Cada exame em um lugar diferente da cidade</li>
+            <li><span class="icon">×</span> Resultados que ficam soltos no e-mail ou no papel</li>
+            <li><span class="icon">×</span> Médico que você só vê uma vez na vida</li>
+            <li><span class="icon">×</span> Check-up que custa o valor de uma consulta particular</li>
+          </ul>
+        </article>
+        <article class="compare-card sense">
+          <div class="compare-head">
+            <div class="compare-mark">✓</div>
+            <span class="compare-title">Na Sense</span>
+          </div>
+          <ul class="compare-list">
+            <li><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Agenda no WhatsApp em minutos, com uma pessoa só</li>
+            <li><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Consultas e exames no mesmo endereço</li>
+            <li><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Histórico organizado e sempre à mão</li>
+            <li><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Time multidisciplinar acompanhando você de perto</li>
+            <li><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Check-up completo a partir de R$ 170</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SENSE CONSULTA CTA (B2C) ============ -->
+  <section class="patient-cta" id="sense-consulta">
+    <div class="container">
+      <div class="sc-card">
+        <div class="sc-content">
+          <span class="sc-eyebrow">Sense Consulta · disponível em Uberaba</span>
+          <h2>Consultas e exames<br /><em>com até 80% de desconto.</em></h2>
+          <p>O Sense Consulta conecta você a +300 especialistas em Uberaba.<br />Tudo isso sem carência, sem mensalidade. Você paga só quando usa.</p>
+          <a href="https://www.senseconsulta.com.br/" target="_blank" rel="noopener" class="btn-primary sc-btn">
+            Conhecer o Sense Consulta
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <ul class="sc-bullets">
+          <li>
+            <span class="sc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            +300 especialistas qualificados
+          </li>
+          <li>
+            <span class="sc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Até 80% de desconto em consultas e exames
+          </li>
+          <li>
+            <span class="sc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Zero carência, zero mensalidade
+          </li>
+          <li>
+            <span class="sc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Agendamento simples pelo WhatsApp
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    Bloco "Seja Dr(a). Sense" foi movido para LP separada de profissionais.
+    HTML + CSS preservados em ./_para-pagina-profissionais.html
+  -->
+
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo" aria-label="Sense">
+            <img src="images/brand/sense-logo.png" alt="Sense" class="logo-img" />
+          </a>
+          <p>Um lugar pra cuidar da saúde como se estivesse em casa. Uberaba — MG.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/sense.doc" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/5534999593207" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pacientes</h4>
+          <ul>
+            <li><a href="#especialidades">Especialidades</a></li>
+            <li><a href="#exames">Exames</a></li>
+            <li><a href="#checkup">Check-up</a></li>
+            <li><a href="#">Profissionais</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Profissionais</h4>
+          <ul>
+            <li><a href="#dr">Seja Dr(a). Sense</a></li>
+            <li><a href="#">Coworking médico</a></li>
+            <li><a href="#">Tecnologia</a></li>
+            <li><a href="#">Marketing médico</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li class="footer-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              (34) 9 9959-3207
+            </li>
+            <li class="footer-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              (34) 3322-8365
+            </li>
+            <li class="footer-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              clinica.sensesaude@gmail.com
+            </li>
+            <li class="footer-row-icon" style="align-items: flex-start;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Av. Leopoldino de Oliveira, 2025<br />Estados Unidos · Uberaba — MG
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <span>© 2026 Sense Saúde · CNPJ 41.322.460/0001-13</span>
+        <span>Feito com cuidado em Uberaba — MG</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp CTA -->
+  <a href="https://wa.me/5534999593207" class="floating-wa" target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.485.709.305 1.262.484 1.694.629.713.227 1.36.195 1.871.121.571-.085 1.758-.719 2.006-1.413.255-.69.255-1.275.18-1.41-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375a9.869 9.869 0 0 1-1.516-5.26c0-5.445 4.455-9.885 9.945-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.875 2.909 4.371 2.909 7.026 0 5.444-4.499 9.885-9.945 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/>
+    </svg>
+    Agendar pelo WhatsApp
+  </a>
+
+  <script>
+    (function() {
+      const carousel = document.getElementById('espCarousel');
+      if (!carousel) return;
+
+      const AUTO_MS = 5000;
+      const RESUME_MS = 4000;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let timer = null;
+      let resumeTimer = null;
+
+      const getStep = () => {
+        const card = carousel.querySelector('.esp-card');
+        return (card?.offsetWidth || 320) + 16;
+      };
+
+      const maxScroll = () => carousel.scrollWidth - carousel.clientWidth;
+
+      const goNext = () => {
+        if (carousel.scrollLeft >= maxScroll() - 1) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+        }
+      };
+
+      const start = () => {
+        if (reduced) return;
+        stop();
+        timer = setInterval(goNext, AUTO_MS);
+      };
+
+      const stop = () => {
+        if (timer) { clearInterval(timer); timer = null; }
+      };
+
+      const pauseAndResume = (delay = RESUME_MS) => {
+        stop();
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(start, delay);
+      };
+
+      // pausa em hover
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+
+      // pausa em toque (mobile)
+      carousel.addEventListener('touchstart', stop, { passive: true });
+      carousel.addEventListener('touchend', () => pauseAndResume(2000), { passive: true });
+
+      // pausa quando a aba não está visível
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else start();
+      });
+
+      start();
+    })();
+  </script>
+
+</body>
+</html>
