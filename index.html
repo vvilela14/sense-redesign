@@ -373,6 +373,37 @@
       position: relative;
       margin: 0 -24px;
     }
+    .esp-nav {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      justify-content: flex-end;
+      padding-right: 24px;
+    }
+    .esp-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .esp-nav-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .esp-nav-btn:disabled {
+      border-color: var(--hairline);
+      color: var(--muted);
+      cursor: default;
+      background: transparent;
+    }
     .esp-carousel {
       display: flex;
       gap: 16px;
@@ -1113,6 +1144,14 @@
           </a>
         </div>
       </div>
+      <div class="esp-nav">
+        <button class="esp-nav-btn" id="espPrev" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="esp-nav-btn" id="espNext" aria-label="Próximo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
       <div class="specialty-grid">
         <span class="chip">Psicologia</span>
         <span class="chip">Psiquiatria</span>
@@ -1466,6 +1505,33 @@
       // pausa em toque (mobile)
       carousel.addEventListener('touchstart', stop, { passive: true });
       carousel.addEventListener('touchend', () => pauseAndResume(2000), { passive: true });
+
+      // Nav buttons
+      const prevBtn = document.getElementById('espPrev');
+      const nextBtn = document.getElementById('espNext');
+
+      function updateNavBtns() {
+        if (!prevBtn || !nextBtn) return;
+        prevBtn.disabled = carousel.scrollLeft <= 0;
+        nextBtn.disabled = carousel.scrollLeft >= maxScroll() - 1;
+      }
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          pauseAndResume(3000);
+          carousel.scrollBy({ left: -getStep(), behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+          pauseAndResume(3000);
+          if (carousel.scrollLeft >= maxScroll() - 1) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+          }
+        });
+        carousel.addEventListener('scroll', updateNavBtns);
+        updateNavBtns();
+      }
 
       // pausa quando a aba não está visível
       document.addEventListener('visibilitychange', () => {
