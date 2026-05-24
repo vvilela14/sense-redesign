@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Dra Josiane Gabriela de Souza Silva — Sense</title>
+  <link rel="icon" type="image/png" href="images/brand/Sense-icon-S.png"/>
+  <link rel="apple-touch-icon" href="images/brand/Sense-icon-S.png"/>
+  <link rel="preconnect" href="https://api.fontshare.com"/>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap"/>
+  <style>
+    :root{
+      --primary:#e06253;--primary-hover:#c64f41;--primary-soft:#ffd0b2;
+      --primary-cream:#fbf3ec;--consulta:#750d37;--pink-soft:#feddd6;
+      --ink:#062533;--body:#1f3340;--muted:#6a7a85;--hairline:#eaeaea;
+      --hairline-soft:#f3f3f3;--canvas:#ffffff;--surface-soft:#f7f7f7;
+      --accent-blue:#0d5074;
+      --shadow-card:rgba(0,0,0,.02) 0 0 0 1px,rgba(0,0,0,.04) 0 2px 6px,rgba(0,0,0,.08) 0 4px 8px;
+      --r-sm:8px;--r-md:14px;--r-lg:20px;--r-xl:32px;--r-full:9999px;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{font-family:'Satoshi',-apple-system,sans-serif;color:var(--ink);background:var(--canvas);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{max-width:100%;display:block;}
+    a{color:inherit;text-decoration:none;}
+    button{font:inherit;cursor:pointer;border:none;}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+    /* NAV */
+    .nav{height:72px;border-bottom:1px solid var(--hairline);position:sticky;top:0;background:var(--canvas);z-index:100;}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+    .logo-img{height:30px;width:auto;}
+    .nav-links{display:flex;gap:28px;}
+    .nav-link{font-size:14px;font-weight:500;color:var(--body);transition:color .15s;}
+    .nav-link:hover{color:var(--primary);}
+    .nav-cta{background:var(--primary);color:#fff;font-size:14px;font-weight:700;padding:9px 18px;border-radius:var(--r-full);transition:background .15s;white-space:nowrap;}
+    .nav-cta:hover{background:var(--primary-hover);}
+    @media(max-width:640px){.nav-links{display:none;}}
+    /* BTNS */
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--r-full);border:none;cursor:pointer;transition:background .15s;text-decoration:none;}
+    .btn-primary:hover{background:var(--primary-hover);}
+    .btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-size:14px;font-weight:600;padding:10px 20px;border-radius:var(--r-full);border:1.5px solid var(--hairline);cursor:pointer;transition:all .15s;text-decoration:none;}
+    .btn-outline:hover{border-color:var(--ink);}
+    /* FOOTER */
+    .page-footer{background:var(--ink);color:rgba(255,255,255,.55);text-align:center;padding:24px;font-size:13px;}
+    .page-footer a{color:var(--primary-soft);}
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><img src="images/brand/sense-logo.png" alt="Sense" class="logo-img"/></a>
+    <nav class="nav-links">
+      <a href="index.html#especialidades" class="nav-link">Especialidades</a>
+      <a href="especialistas.html" class="nav-link">Profissionais</a>
+    </nav>
+    <a href="especialistas.html" class="nav-cta">Agendar Consulta</a>
+  </div>
+</header>
+  <style>
+    .profile-hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-hover) 100%);padding:48px 0 0;color:#fff;}
+    .profile-hero-inner{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:end;}
+    .profile-photo{width:160px;height:180px;object-fit:cover;object-position:top;border-radius:var(--r-lg) var(--r-lg) 0 0;border:3px solid rgba(255,255,255,.3);}
+    .profile-avatar{width:160px;height:180px;border-radius:var(--r-lg) var(--r-lg) 0 0;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:800;color:#fff;border:3px solid rgba(255,255,255,.3);}
+    .profile-info{padding-bottom:28px;}
+    .profile-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.75);margin-bottom:16px;transition:color .15s;}
+    .profile-back:hover{{color:#fff;}}
+    .profile-name{font-size:clamp(22px,3vw,34px);font-weight:800;margin:0 0 6px;letter-spacing:-.01em;}
+    .profile-specialty{font-size:16px;opacity:.9;margin:0 0 12px;font-weight:500;}
+    .profile-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+    .badge-white{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--primary);background:#fff;padding:4px 12px;border-radius:var(--r-full);}
+    .badge-tele2{color:var(--accent-blue);}
+    .profile-crm{font-size:13px;opacity:.8;}
+    .profile-rating{display:flex;align-items:center;gap:6px;margin-top:8px;}
+    .profile-star{font-size:16px;color:#fbbf24;letter-spacing:2px;}
+    .profile-score{font-size:15px;font-weight:700;}
+    /* BODY */
+    .profile-body{{padding:48px 0 80px;}}
+    .profile-grid{{display:grid;grid-template-columns:1fr 300px;gap:32px;}}
+    @media(max-width:860px){{.profile-grid{{grid-template-columns:1fr;}}.profile-hero-inner{{grid-template-columns:1fr;}}.profile-photo,.profile-avatar{{display:none;}}}}
+    /* SECTIONS */
+    .section-card{{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline-soft);box-shadow:var(--shadow-card);padding:28px;margin-bottom:20px;}}
+    .section-title{{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 16px;display:flex;align-items:center;gap:8px;}}
+    .section-title::before{{content:'';display:block;width:3px;height:14px;background:var(--primary);border-radius:2px;}}
+    .about-text{{font-size:15px;line-height:1.7;color:var(--body);margin:0;}}
+    .tag-list{{display:flex;flex-wrap:wrap;gap:8px;}}
+    .tag{{background:var(--primary-cream);color:var(--primary-hover);font-size:13px;font-weight:600;padding:5px 12px;border-radius:var(--r-full);}}
+    .bullet-list{{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}}
+    .bullet-list li{{font-size:14px;color:var(--body);display:flex;gap:8px;align-items:flex-start;line-height:1.5;}}
+    .bullet-list li::before{{content:'';display:block;width:6px;height:6px;background:var(--primary);border-radius:50%;flex-shrink:0;margin-top:6px;}}
+    /* SIDEBAR */
+    .sidebar-card{{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline-soft);box-shadow:var(--shadow-card);padding:24px;margin-bottom:16px;}}
+    .sidebar-title{{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 14px;}}
+    .info-row{{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:14px;color:var(--body);}}
+    .info-icon{{color:var(--primary);flex-shrink:0;margin-top:2px;}}
+    .schedule-chip{{background:var(--surface-soft);border-radius:var(--r-sm);padding:6px 10px;font-size:12px;color:var(--body);font-weight:500;}}
+    .schedule-grid{{display:flex;flex-direction:column;gap:6px;}}
+    .cta-card{{background:linear-gradient(135deg,var(--primary),var(--primary-hover));border-radius:var(--r-lg);padding:24px;color:#fff;text-align:center;}}
+    .cta-card h3{{font-size:17px;font-weight:800;margin:0 0 8px;}}
+    .cta-card p{{font-size:13px;opacity:.88;margin:0 0 16px;}}
+    .cta-btn{{display:block;background:#fff;color:var(--primary);font-size:14px;font-weight:700;padding:12px;border-radius:var(--r-full);text-decoration:none;transition:opacity .15s;}}
+    .cta-btn:hover{{opacity:.9;}}
+    .ig-link{{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;}}
+    .ig-link:hover{{text-decoration:underline;}}
+  </style>
+<section class="profile-hero">
+  <div class="container">
+    <div class="profile-hero-inner">
+      <div><div class="profile-avatar">A</div></div>
+      <div class="profile-info">
+        <a href="especialistas.html" class="profile-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Voltar aos especialistas</a>
+        <h1 class="profile-name">Dra Josiane Gabriela de Souza Silva</h1>
+        <p class="profile-specialty">Infectologista</p>
+        <div class="profile-badges">
+          <span class="badge-white"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> Verificado</span>
+          
+        </div>
+        <p class="profile-crm">CRM 73462-MG<p style="font-size:12px;color:var(--muted);margin:4px 0 0;">RQE 68215</p></p>
+        <div class="profile-rating">
+          <span class="profile-star">★★★★★</span>
+          <span class="profile-score">5.0</span>
+          <span style="font-size:12px;opacity:.7;">(Novo)</span>
+        </div>
+        <a href="https://www.instagram.com/drajosianeinfecto/" target="_blank" class="ig-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg> Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="profile-body">
+  <div class="container">
+    <div class="profile-grid">
+      <div class="profile-main">
+<div class="section-card"><p class="section-title">Sobre</p><p class="about-text">.</p></div><div class="section-card"><p class="section-title">Tratamentos</p><div class="tag-list"><span class="tag">&nbsp;HIV, Hepatite;</span><span class="tag">Tuberculose</span><span class="tag">Infecções sexualmente transmissíveis</span><span class="tag">Micoses</span><span class="tag">Infecções urinárias</span><span class="tag">Pneumonias</span><span class="tag">Dengue</span><span class="tag">Entre outras</span></div></div><div class="section-card"><p class="section-title">Quando consultar</p><ul class="bullet-list"><li>Febre persistente( febre dura vários dias sem uma causa aparente).</li><li>Infecções recorrentes: não melhoram com tratamentos convencionais ou que voltam com frequência.</li><li>Diagnóstico de doenças complexas: &nbsp;HIV, hepatite B/C, tuberculose.</li><li>Prevenção e orientação de viagens: &nbsp;vacinas necessárias e cuidados contra doenças infecciosas em destinos de viagem.</li><li>Prevenção e diagnóstico de ISTs: Para testagem, diagnóstico e tratamento de infecções sexualmente transmissíveis.</li><li>Suspeita de infecções específicas: Em casos como febre amarela, dengue, zika, caxumba, sarampo, micoses ou infecções urinárias.</li><li>Avaliação de queda de imunidade: causas de uma imunidade baixa, como infecções crônicas ocultas.</li><li>Encaminhamento médico.</li></ul></div><div class="section-card"><p class="section-title">Formação</p><ul class="bullet-list"><li>Medicina - UFU( Universidade Federal de Uberlândia)</li><li>Infectologia - UFTM( Universidade Federal do Triângulo Mineiro)</li></ul></div><div class="section-card"><p class="section-title">Experiência</p><ul class="bullet-list"><li>UBSF( Unidade Básica de Saúde da Família)</li><li>Pronto atendimento</li><li>Medicina do trabalho</li><li>Enfermaria</li><li>Controle de infecções relacionadas a assistência</li></ul></div>
+      </div>
+      <div class="profile-sidebar">
+        <div class="cta-card">
+          <h3>Agendar Consulta</h3>
+          <p>Marque sua consulta com Dra via WhatsApp</p>
+          <a href="https://wa.me/5534999999999?text=Olá!%20Quero%20agendar%20com%20Dra%20Josiane%20Gabriela%20de%20Souza%20Silva" target="_blank" class="cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendar agora</a>
+        </div>
+        <div class="sidebar-card">
+          <p class="sidebar-title">Consultas</p>
+          <div class="info-row"><span class="info-icon">✓</span>Presencial</div>
+        </div>
+<div class="sidebar-card"><p class="sidebar-title">Disponibilidade</p><div class="schedule-grid"><span class="schedule-chip">Segunda-feira (tarde)</span><span class="schedule-chip">Terça-feira (tarde)</span></div></div><div class="sidebar-card"><p class="sidebar-title">Convênios</p><div class="tag-list"><span class="tag">Não Atende</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="page-footer">
+  <p>© 2025 Sense Consulta · Av. Leopoldino de Oliveira, 2025, Uberaba/MG · <a href="index.html">Voltar ao site</a></p>
+</footer>
+</body></html>
