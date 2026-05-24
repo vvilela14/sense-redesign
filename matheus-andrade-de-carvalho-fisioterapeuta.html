@@ -3,150 +3,155 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Matheus Andrade de Carvalho — Sense</title>
+  <title>Matheus Andrade de Carvalho — Sense Consulta</title>
   <link rel="icon" type="image/png" href="images/brand/Sense-icon-S.png"/>
-  <link rel="apple-touch-icon" href="images/brand/Sense-icon-S.png"/>
   <link rel="preconnect" href="https://api.fontshare.com"/>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap"/>
   <style>
-    :root{
-      --primary:#e06253;--primary-hover:#c64f41;--primary-soft:#ffd0b2;
-      --primary-cream:#fbf3ec;--consulta:#750d37;--pink-soft:#feddd6;
-      --ink:#062533;--body:#1f3340;--muted:#6a7a85;--hairline:#eaeaea;
-      --hairline-soft:#f3f3f3;--canvas:#ffffff;--surface-soft:#f7f7f7;
-      --accent-blue:#0d5074;
-      --shadow-card:rgba(0,0,0,.02) 0 0 0 1px,rgba(0,0,0,.04) 0 2px 6px,rgba(0,0,0,.08) 0 4px 8px;
-      --r-sm:8px;--r-md:14px;--r-lg:20px;--r-xl:32px;--r-full:9999px;
-    }
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;}
-    body{font-family:'Satoshi',-apple-system,sans-serif;color:var(--ink);background:var(--canvas);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-    img{max-width:100%;display:block;}
-    a{color:inherit;text-decoration:none;}
-    button{font:inherit;cursor:pointer;border:none;}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px;}
-    /* NAV */
-    .nav{height:72px;border-bottom:1px solid var(--hairline);position:sticky;top:0;background:var(--canvas);z-index:100;}
-    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;}
-    .logo-img{height:30px;width:auto;}
-    .nav-links{display:flex;gap:28px;}
-    .nav-link{font-size:14px;font-weight:500;color:var(--body);transition:color .15s;}
-    .nav-link:hover{color:var(--primary);}
-    .nav-cta{background:var(--primary);color:#fff;font-size:14px;font-weight:700;padding:9px 18px;border-radius:var(--r-full);transition:background .15s;white-space:nowrap;}
-    .nav-cta:hover{background:var(--primary-hover);}
-    @media(max-width:640px){.nav-links{display:none;}}
-    /* BTNS */
-    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--r-full);border:none;cursor:pointer;transition:background .15s;text-decoration:none;}
-    .btn-primary:hover{background:var(--primary-hover);}
-    .btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-size:14px;font-weight:600;padding:10px 20px;border-radius:var(--r-full);border:1.5px solid var(--hairline);cursor:pointer;transition:all .15s;text-decoration:none;}
-    .btn-outline:hover{border-color:var(--ink);}
-    /* FOOTER */
-    .page-footer{background:var(--ink);color:rgba(255,255,255,.55);text-align:center;padding:24px;font-size:13px;}
-    .page-footer a{color:var(--primary-soft);}
-  </style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Satoshi',-apple-system,sans-serif;color:#062533;background:#fff;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:960px;margin:0 auto;padding:0 24px;}
+  /* NAV */
+  .nav{height:72px;border-bottom:1px solid #eaeaea;background:#fff;position:sticky;top:0;z-index:100;}
+  .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .logo-img{height:30px;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-link{font-size:14px;font-weight:500;color:#1f3340;transition:color .15s;}
+  .nav-link:hover{color:#e06253;}
+  .nav-cta{background:#750d37;color:#fff;font-size:14px;font-weight:700;padding:9px 18px;border-radius:9999px;white-space:nowrap;}
+  .nav-area-btn{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#062533;border:1.5px solid #eaeaea;padding:8px 16px;border-radius:9999px;}
+  @media(max-width:640px){.nav-links{display:none;}}
+  /* PROFILE HEADER */
+  .profile-header{padding:48px 0 40px;background:#fff;}
+  .profile-header-inner{display:flex;gap:36px;align-items:flex-start;}
+  .profile-photo-wrap{flex-shrink:0;}
+  .profile-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid #f0f0f0;}
+  .profile-avatar{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#fbf3ec,#feddd6);display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:800;color:#e06253;}
+  .profile-info{flex:1;padding-top:8px;}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#6a7a85;margin-bottom:20px;transition:color .15s;}
+  .back-link:hover{color:#e06253;}
+  .profile-name{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
+  .profile-specialty-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .profile-specialty{font-size:17px;color:#1f3340;font-weight:500;}
+  .verified-tag{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#16a34a;}
+  .profile-crm{font-size:14px;color:#6a7a85;margin-bottom:4px;}
+  .profile-rqe{font-size:14px;color:#6a7a85;margin-bottom:20px;}
+  .btn-agendar{display:inline-flex;align-items:center;gap:8px;background:#e06253;color:#fff;font-size:15px;font-weight:700;padding:12px 24px;border-radius:9999px;border:none;cursor:pointer;transition:background .15s;}
+  .btn-agendar:hover{background:#c64f41;}
+  /* MAIN SECTION */
+  .profile-main-section{background:#f7f7f7;border-radius:20px;padding:36px;margin:0 0 32px;}
+  .main-section-inner{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start;}
+  @media(max-width:780px){.main-section-inner{grid-template-columns:1fr;}}
+  .section-title-lg{font-size:22px;font-weight:800;margin-bottom:16px;letter-spacing:-.01em;}
+  .consult-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+  .consult-chip{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#6a7a85;}
+  .subsection-title{font-size:14px;font-weight:700;color:#062533;margin-bottom:10px;}
+  .treat-chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .treat-chip{background:#fff;border:1.5px solid #eaeaea;color:#1f3340;font-size:13px;font-weight:500;padding:5px 14px;border-radius:9999px;}
+  /* LOCATION */
+  .location-block{margin-top:28px;}
+  .location-name{font-size:14px;font-weight:700;color:#062533;margin-bottom:2px;}
+  .location-addr{font-size:13px;color:#6a7a85;line-height:1.6;}
+  /* CALENDAR */
+  .calendar-widget{background:#fff;border-radius:14px;border:1px solid #eaeaea;overflow:hidden;}
+  .cal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #f3f3f3;}
+  .cal-month{font-size:14px;font-weight:700;}
+  .cal-nav{background:none;border:none;font-size:18px;color:#6a7a85;cursor:pointer;padding:0 4px;line-height:1;}
+  .cal-nav:hover{color:#e06253;}
+  .cal-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .cal-table thead th{padding:8px 4px;text-align:center;font-size:11px;font-weight:600;color:#6a7a85;text-transform:lowercase;}
+  .cal-table td{padding:7px 4px;text-align:center;color:#1f3340;cursor:pointer;border-radius:6px;}
+  .cal-day:hover{background:#fbf3ec;color:#e06253;}
+  .cal-today{background:#e06253;color:#fff !important;border-radius:6px;font-weight:700;}
+  .cal-weekend{color:#6a7a85;}
+  /* CONTENT SECTIONS */
+  .content-section{background:#f7f7f7;border-radius:20px;padding:32px;margin-bottom:20px;}
+  .content-title{font-size:18px;font-weight:800;margin-bottom:20px;letter-spacing:-.01em;}
+  .content-subtitle{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6a7a85;margin-bottom:8px;margin-top:16px;}
+  .content-subtitle:first-child{margin-top:0;}
+  .content-text{font-size:14px;color:#1f3340;line-height:1.7;}
+  .profile-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;}
+  .profile-list li{font-size:14px;color:#1f3340;padding-left:14px;position:relative;line-height:1.5;}
+  .profile-list li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:#e06253;}
+  /* FOOTER */
+  .page-footer{background:#062533;color:rgba(255,255,255,.5);text-align:center;padding:24px;font-size:13px;margin-top:60px;}
+  .page-footer a{color:#ffd0b2;}
+</style>
 </head>
 <body>
 <header class="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="logo"><img src="images/brand/sense-logo.png" alt="Sense" class="logo-img"/></a>
+    <a href="index.html"><img src="images/brand/sense-logo.png" alt="Sense" class="logo-img"/></a>
     <nav class="nav-links">
-      <a href="index.html#especialidades" class="nav-link">Especialidades</a>
-      <a href="especialistas.html" class="nav-link">Profissionais</a>
+      <a href="index.html" class="nav-link">Benefícios</a>
+      <a href="index.html" class="nav-link">Processo</a>
+      <a href="index.html" class="nav-link">Depoimentos</a>
     </nav>
-    <a href="especialistas.html" class="nav-cta">Agendar Consulta</a>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="especialistas.html" class="nav-cta">Encontre um Especialista</a>
+      <a href="#" class="nav-area-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Área do Profissional
+      </a>
+    </div>
   </div>
 </header>
-  <style>
-    .profile-hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-hover) 100%);padding:48px 0 0;color:#fff;}
-    .profile-hero-inner{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:end;}
-    .profile-photo{width:160px;height:180px;object-fit:cover;object-position:top;border-radius:var(--r-lg) var(--r-lg) 0 0;border:3px solid rgba(255,255,255,.3);}
-    .profile-avatar{width:160px;height:180px;border-radius:var(--r-lg) var(--r-lg) 0 0;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:800;color:#fff;border:3px solid rgba(255,255,255,.3);}
-    .profile-info{padding-bottom:28px;}
-    .profile-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.75);margin-bottom:16px;transition:color .15s;}
-    .profile-back:hover{{color:#fff;}}
-    .profile-name{font-size:clamp(22px,3vw,34px);font-weight:800;margin:0 0 6px;letter-spacing:-.01em;}
-    .profile-specialty{font-size:16px;opacity:.9;margin:0 0 12px;font-weight:500;}
-    .profile-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
-    .badge-white{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--primary);background:#fff;padding:4px 12px;border-radius:var(--r-full);}
-    .badge-tele2{color:var(--accent-blue);}
-    .profile-crm{font-size:13px;opacity:.8;}
-    .profile-rating{display:flex;align-items:center;gap:6px;margin-top:8px;}
-    .profile-star{font-size:16px;color:#fbbf24;letter-spacing:2px;}
-    .profile-score{font-size:15px;font-weight:700;}
-    /* BODY */
-    .profile-body{{padding:48px 0 80px;}}
-    .profile-grid{{display:grid;grid-template-columns:1fr 300px;gap:32px;}}
-    @media(max-width:860px){{.profile-grid{{grid-template-columns:1fr;}}.profile-hero-inner{{grid-template-columns:1fr;}}.profile-photo,.profile-avatar{{display:none;}}}}
-    /* SECTIONS */
-    .section-card{{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline-soft);box-shadow:var(--shadow-card);padding:28px;margin-bottom:20px;}}
-    .section-title{{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 16px;display:flex;align-items:center;gap:8px;}}
-    .section-title::before{{content:'';display:block;width:3px;height:14px;background:var(--primary);border-radius:2px;}}
-    .about-text{{font-size:15px;line-height:1.7;color:var(--body);margin:0;}}
-    .tag-list{{display:flex;flex-wrap:wrap;gap:8px;}}
-    .tag{{background:var(--primary-cream);color:var(--primary-hover);font-size:13px;font-weight:600;padding:5px 12px;border-radius:var(--r-full);}}
-    .bullet-list{{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}}
-    .bullet-list li{{font-size:14px;color:var(--body);display:flex;gap:8px;align-items:flex-start;line-height:1.5;}}
-    .bullet-list li::before{{content:'';display:block;width:6px;height:6px;background:var(--primary);border-radius:50%;flex-shrink:0;margin-top:6px;}}
-    /* SIDEBAR */
-    .sidebar-card{{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline-soft);box-shadow:var(--shadow-card);padding:24px;margin-bottom:16px;}}
-    .sidebar-title{{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 14px;}}
-    .info-row{{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:14px;color:var(--body);}}
-    .info-icon{{color:var(--primary);flex-shrink:0;margin-top:2px;}}
-    .schedule-chip{{background:var(--surface-soft);border-radius:var(--r-sm);padding:6px 10px;font-size:12px;color:var(--body);font-weight:500;}}
-    .schedule-grid{{display:flex;flex-direction:column;gap:6px;}}
-    .cta-card{{background:linear-gradient(135deg,var(--primary),var(--primary-hover));border-radius:var(--r-lg);padding:24px;color:#fff;text-align:center;}}
-    .cta-card h3{{font-size:17px;font-weight:800;margin:0 0 8px;}}
-    .cta-card p{{font-size:13px;opacity:.88;margin:0 0 16px;}}
-    .cta-btn{{display:block;background:#fff;color:var(--primary);font-size:14px;font-weight:700;padding:12px;border-radius:var(--r-full);text-decoration:none;transition:opacity .15s;}}
-    .cta-btn:hover{{opacity:.9;}}
-    .ig-link{{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;}}
-    .ig-link:hover{{text-decoration:underline;}}
-  </style>
-<section class="profile-hero">
+
+<section class="profile-header">
   <div class="container">
-    <div class="profile-hero-inner">
-      <div><div class="profile-avatar">M</div></div>
+    <div class="profile-header-inner">
+      <div class="profile-photo-wrap"><div class="profile-avatar">M</div></div>
       <div class="profile-info">
-        <a href="especialistas.html" class="profile-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Voltar aos especialistas</a>
+        <a href="especialistas.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Voltar
+        </a>
         <h1 class="profile-name">Matheus Andrade de Carvalho</h1>
-        <p class="profile-specialty">Fisioterapeuta</p>
-        <div class="profile-badges">
-          <span class="badge-white"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> Verificado</span>
-          
+        <div class="profile-specialty-row">
+          <span class="profile-specialty">Fisioterapeuta</span>
+          <span class="verified-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="#16a34a"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> Verificado</span>
         </div>
         <p class="profile-crm">COFFITO  225464</p>
-        <div class="profile-rating">
-          <span class="profile-star">★★★★★</span>
-          <span class="profile-score">5.0</span>
-          <span style="font-size:12px;opacity:.7;">(Novo)</span>
-        </div>
-        <a href="https://www.instagram.com/matheuss.fisio/" target="_blank" class="ig-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg> Instagram</a>
+        <p class="profile-rqe" style="height:20px;"></p>
+        <a href="https://wa.me/5534999999999?text=Olá!%20Quero%20agendar%20com%20Matheus%20Andrade%20de%20Carvalho" target="_blank" class="btn-agendar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendar consulta</a>
       </div>
     </div>
   </div>
 </section>
-<section class="profile-body">
-  <div class="container">
-    <div class="profile-grid">
-      <div class="profile-main">
-<div class="section-card"><p class="section-title">Sobre</p><p class="about-text">Sou Matheus Andrade, fisioterapeuta desde 2015. Tenho 38 anos e atendo pacientes que, especialmente, precisam de tratamento especializado para coluna vertebral, joelhos e quadril. Exerço meu ofício com respeito e amor para que você tenha sempre os melhores resultados. A fisioterapia é para TODOS. Preventiva, te ajuda a garantir mais flexibilidade, melhora da dor e restabelece suas funções motoras, promovendo mais qualidade de vida, saúde e bem-estar.</p></div><div class="section-card"><p class="section-title">Tratamentos</p><ul class="bullet-list"><li>Dores crônicas em coluna lombar e cervical</li><li>Lesões articulares de quadril e joelhos</li><li>Degenerações crônicas como artrose, artrite e osteoporose</li><li>Reabilitação para idoso</li><li>Fisioterapia esportiva e protocolo especializado de reabilitação pós-cirúrgico</li></ul></div>
-      </div>
-      <div class="profile-sidebar">
-        <div class="cta-card">
-          <h3>Agendar Consulta</h3>
-          <p>Marque sua consulta com Matheus via WhatsApp</p>
-          <a href="https://wa.me/5534999999999?text=Olá!%20Quero%20agendar%20com%20Matheus%20Andrade%20de%20Carvalho" target="_blank" class="cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendar agora</a>
+
+<div class="container">
+  <div class="profile-main-section">
+    <div class="main-section-inner">
+      <div>
+        <h2 class="section-title-lg">Fisioterapeuta</h2>
+        <div class="consult-row"><span class="consult-chip">🏥 Presencial</span><span class="consult-chip">🤝 LIV</span><span class="consult-chip">🤝 Consulta Particular</span></div>
+        <div class="subsection-title">Tratamentos</div><div class="treat-chips"><span class="treat-chip">Dores crônicas em coluna lombar e cervical</span><span class="treat-chip">Lesões articulares de quadril e joelhos</span><span class="treat-chip">Degenerações crônicas como artrose, artrite e osteoporose</span><span class="treat-chip">Reabilitação para idoso</span><span class="treat-chip">Fisioterapia esportiva e protocolo especializado de reabilitação pós-cirúrgico</span></div>
+        <div class="location-block">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span class="subsection-title" style="margin:0;">Localização</span>
+          </div>
+          <p class="location-name">Clínica Sense</p>
+          <p class="location-addr">Avenida Leopoldino de Oliveira, 2025 - Estados Unidos<br/>Uberaba - MG | 38026-435</p>
         </div>
-        <div class="sidebar-card">
-          <p class="sidebar-title">Consultas</p>
-          <div class="info-row"><span class="info-icon">✓</span>Presencial</div>
-        </div>
-<div class="sidebar-card"><p class="sidebar-title">Convênios</p><div class="tag-list"><span class="tag">LIV</span><span class="tag">Consulta Particular</span></div></div>
       </div>
+      <div>
+    <div class="calendar-widget">
+      <div class="cal-header">
+        <button class="cal-nav">‹</button>
+        <span class="cal-month">Maio 2026</span>
+        <button class="cal-nav">›</button>
+      </div>
+      <table class="cal-table">
+        <thead><tr>
+          <th>dom</th><th>seg</th><th>ter</th><th>qua</th><th>qui</th><th>sex</th><th>sab</th>
+        </tr></thead>
+        <tbody><tr><td></td><td></td><td></td><td></td><td class="cal-day">1</td><td class="cal-weekend">2</td><td class="cal-weekend">3</td></tr><tr><td class="cal-day">4</td><td class="cal-day">5</td><td class="cal-day">6</td><td class="cal-day">7</td><td class="cal-day">8</td><td class="cal-weekend">9</td><td class="cal-weekend">10</td></tr><tr><td class="cal-day">11</td><td class="cal-day">12</td><td class="cal-day">13</td><td class="cal-day">14</td><td class="cal-day">15</td><td class="cal-weekend">16</td><td class="cal-weekend">17</td></tr><tr><td class="cal-day">18</td><td class="cal-day">19</td><td class="cal-day">20</td><td class="cal-day">21</td><td class="cal-day">22</td><td class="cal-weekend">23</td><td class="cal-today">24</td></tr><tr><td class="cal-day">25</td><td class="cal-day">26</td><td class="cal-day">27</td><td class="cal-day">28</td><td class="cal-day">29</td><td class="cal-weekend">30</td><td class="cal-weekend">31</td></tr></tbody>
+      </table>
+    </div></div>
     </div>
   </div>
-</section>
-<footer class="page-footer">
-  <p>© 2025 Sense Consulta · Av. Leopoldino de Oliveira, 2025, Uberaba/MG · <a href="index.html">Voltar ao site</a></p>
+<div class="content-section"><div class="content-subtitle" style="margin-top:16px;">Sobre</div><p class="content-text">Sou Matheus Andrade, fisioterapeuta desde 2015. Tenho 38 anos e atendo pacientes que, especialmente, precisam de tratamento especializado para coluna vertebral, joelhos e quadril. Exerço meu ofício com respeito e amor para que você tenha sempre os melhores resultados. A fisioterapia é para TODOS. Preventiva, te ajuda a garantir mais flexibilidade, melhora da dor e restabelece suas funções motoras, promovendo mais qualidade de vida, saúde e bem-estar.</p></div></div><footer class="page-footer">
+  <p>© 2025 Sense Consulta · Av. Leopoldino de Oliveira, 2025, Uberaba/MG · <a href="especialistas.html">← Todos os especialistas</a></p>
 </footer>
 </body></html>
