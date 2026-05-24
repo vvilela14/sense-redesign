@@ -55,6 +55,26 @@
     .hero-search-input-wrap:focus-within{border-color:var(--primary);}
     .hero-search-input-wrap svg{color:var(--muted);flex-shrink:0;}
     .hero-search-input-wrap input{border:none;outline:none;font-family:inherit;font-size:14px;color:var(--ink);background:transparent;width:100%;}
+    /* AUTOCOMPLETE */
+    .autocomplete-wrap{position:relative;flex:1;}
+    .autocomplete-dropdown{
+      position:absolute;top:calc(100% + 6px);left:0;right:0;
+      background:#fff;border:1.5px solid var(--primary);border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:200;
+      max-height:320px;overflow-y:auto;display:none;
+    }
+    .autocomplete-dropdown.open{display:block;}
+    .autocomplete-item{
+      padding:10px 16px;font-size:14px;color:var(--ink);cursor:pointer;
+      transition:background .1s;display:flex;align-items:center;gap:8px;
+    }
+    .autocomplete-item:hover,.autocomplete-item.highlighted{background:var(--primary-cream);}
+    .autocomplete-item .match-text{font-weight:700;color:var(--primary);}
+    .autocomplete-item:first-child{border-radius:10px 10px 0 0;}
+    .autocomplete-item:last-child{border-radius:0 0 10px 10px;}
+    .autocomplete-dropdown::-webkit-scrollbar{width:5px;}
+    .autocomplete-dropdown::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:4px;}
+    .ac-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:0;display:none;}
     .hero-date-wrap{display:flex;flex-direction:column;gap:6px;}
     .hero-date-inner{display:flex;align-items:center;gap:8px;border:1.5px solid var(--hairline);border-radius:10px;padding:10px 14px;color:var(--muted);font-size:14px;}
     @media(max-width:800px){
@@ -163,9 +183,13 @@
     <div class="hero-search-bar">
       <div class="hero-search-wrap">
         <span class="hero-search-label">Área de Atuação</span>
-        <div class="hero-search-input-wrap">
+        <div class="hero-search-input-wrap" style="position:relative;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="text" id="searchInput" placeholder="Filtrar por área de atuação"/>
+          <div class="autocomplete-wrap">
+            <input type="text" id="searchInput" placeholder="Filtrar por área de atuação" autocomplete="off"/>
+            <button class="ac-clear" id="acClear" title="Limpar">✕</button>
+            <div class="autocomplete-dropdown" id="acDropdown"></div>
+          </div>
         </div>
       </div>
       <div class="hero-date-wrap">
@@ -579,34 +603,164 @@
 </footer>
 </body></html>
 <script>
-  const cards = document.querySelectorAll('.doctor-card');
-  const searchInput = document.getElementById('searchInput');
-  const filterChips = document.getElementById('filterChips');
-  const resultsCount = document.getElementById('resultsCount');
-  const emptyState = document.getElementById('emptyState');
-  let activeFilter = 'todos';
-  function update() {
-    const q = searchInput.value.toLowerCase().trim();
-    let n = 0;
-    cards.forEach(c => {
-      const name = c.dataset.name, spec = c.dataset.specialty;
-      const matchQ = !q || name.includes(q) || spec.includes(q);
-      const matchF = activeFilter === 'todos' || spec.includes(activeFilter.replace(/-/g,' '));
-      const show = matchQ && matchF;
-      c.style.display = show ? '' : 'none';
-      if (show) n++;
-    });
-    resultsCount.textContent = n + ' profissional' + (n !== 1 ? 'is' : '') + ' encontrado' + (n !== 1 ? 's' : '');
-    emptyState.style.display = n === 0 ? 'block' : 'none';
+const ESPECIALIDADES = [
+  "Acupunturista","Alergista e Imunologista","Anestesiologista","Angiologista",
+  "Cardiologista","Cirurgião Cardiovascular","Cirurgião da Mão","Cirurgião de Cabeça e Pescoço",
+  "Cirurgião do Aparelho Digestivo","Cirurgião Geral","Cirurgião Oncológico","Cirurgião Pediátrico",
+  "Cirurgião Plástico","Cirurgião Torácico","Cirurgião Vascular","Clínico Médico (ou Clínico Geral)",
+  "Coloproctologista","Dermatologista","Endocrinologista","Endoscopista","Estética Avançada",
+  "Gastroenterologista","Geneticista Médico","Geriatra","Ginecologista e Obstetra",
+  "Hematologista Hemoterapeuta","Homeopata","Infectologista","Mastologista",
+  "Médico Emergencista","Médico de Família e Comunidade","Médico do Trabalho",
+  "Médico de Tráfego","Médico do Esporte","Médico Físico e Reabilitador",
+  "Médico Intensivista","Médico Legal e Perito Médico","Médico Nuclear",
+  "Médico Preventivista e Social","Nefrologista","Neurocirurgião","Neurologista",
+  "Nutrólogo","Oftalmologista","Oncologista Clínico","Ortopedista e Traumatologista",
+  "Otorrinolaringologista","Patologista","Patologista Clínico/Lab.","Pediatra",
+  "Pneumologista","Psiquiatra","Radiologista e Diagnóstico por Imagem",
+  "Radioterapeuta","Reumatologista","Urologista",
+  // also include our actual doctor specialties
+  "Fisioterapeuta","Psicóloga","Psicólogo","Médico Clínico Geral"
+];
+
+const cards = document.querySelectorAll('.doctor-card');
+const searchInput = document.getElementById('searchInput');
+const filterChips = document.getElementById('filterChips');
+const resultsCount = document.getElementById('resultsCount');
+const emptyState = document.getElementById('emptyState');
+const acDropdown = document.getElementById('acDropdown');
+const acClear = document.getElementById('acClear');
+let activeFilter = 'todos';
+let highlightedIndex = -1;
+let selectedSpec = '';
+
+// ── Autocomplete ───────────────────────────────────────────────────────────────
+function normalizeStr(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+}
+
+function buildItem(spec, query) {
+  const norm = normalizeStr(spec);
+  const normQ = normalizeStr(query);
+  let display = spec;
+  if (normQ && norm.includes(normQ)) {
+    const idx = norm.indexOf(normQ);
+    display = spec.slice(0, idx)
+      + '<span class="match-text">' + spec.slice(idx, idx + query.length) + '</span>'
+      + spec.slice(idx + query.length);
   }
-  searchInput.addEventListener('input', update);
-  filterChips.addEventListener('click', e => {
-    const btn = e.target.closest('.chip-btn');
-    if (!btn) return;
-    document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    update();
-  });
+  return display;
+}
+
+function renderDropdown(query) {
+  const normQ = normalizeStr(query.trim());
+  const filtered = normQ
+    ? ESPECIALIDADES.filter(s => normalizeStr(s).includes(normQ))
+    : ESPECIALIDADES;
+
+  if (filtered.length === 0) {
+    acDropdown.innerHTML = '<div class="autocomplete-item" style="color:var(--muted);">Nenhum resultado</div>';
+  } else {
+    acDropdown.innerHTML = filtered.map((s, i) =>
+      `<div class="autocomplete-item" data-value="${s}" data-idx="${i}">${buildItem(s, query.trim())}</div>`
+    ).join('');
+  }
+  highlightedIndex = -1;
+  acDropdown.classList.add('open');
+}
+
+function closeDropdown() {
+  acDropdown.classList.remove('open');
+  highlightedIndex = -1;
+}
+
+function selectSpec(spec) {
+  selectedSpec = spec;
+  searchInput.value = spec;
+  acClear.style.display = 'block';
+  closeDropdown();
   update();
+}
+
+function clearSearch() {
+  selectedSpec = '';
+  searchInput.value = '';
+  acClear.style.display = 'none';
+  closeDropdown();
+  update();
+}
+
+searchInput.addEventListener('focus', () => {
+  renderDropdown(searchInput.value);
+});
+
+searchInput.addEventListener('input', () => {
+  selectedSpec = '';
+  acClear.style.display = searchInput.value ? 'block' : 'none';
+  renderDropdown(searchInput.value);
+  update();
+});
+
+searchInput.addEventListener('keydown', e => {
+  const items = acDropdown.querySelectorAll('.autocomplete-item[data-value]');
+  if (!items.length) return;
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    highlightedIndex = Math.max(highlightedIndex - 1, 0);
+  } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+    e.preventDefault();
+    selectSpec(items[highlightedIndex].dataset.value);
+    return;
+  } else if (e.key === 'Escape') {
+    closeDropdown(); return;
+  }
+  items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightedIndex));
+  if (highlightedIndex >= 0) items[highlightedIndex].scrollIntoView({block:'nearest'});
+});
+
+acDropdown.addEventListener('mousedown', e => {
+  const item = e.target.closest('[data-value]');
+  if (item) { e.preventDefault(); selectSpec(item.dataset.value); }
+});
+
+acClear.addEventListener('click', clearSearch);
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.autocomplete-wrap') && !e.target.closest('.hero-search-input-wrap')) {
+    closeDropdown();
+  }
+});
+
+// ── Cards filter ───────────────────────────────────────────────────────────────
+function update() {
+  const rawQ = searchInput.value.trim();
+  const normQ = normalizeStr(rawQ);
+  let n = 0;
+  cards.forEach(c => {
+    const name = normalizeStr(c.dataset.name);
+    const spec = normalizeStr(c.dataset.specialty);
+    const matchQ = !normQ || name.includes(normQ) || spec.includes(normQ);
+    const normF = normalizeStr(activeFilter.replace(/-/g,' '));
+    const matchF = activeFilter === 'todos' || spec.includes(normF);
+    const show = matchQ && matchF;
+    c.style.display = show ? '' : 'none';
+    if (show) n++;
+  });
+  resultsCount.textContent = n + ' profissional' + (n !== 1 ? 'is' : '') + ' encontrado' + (n !== 1 ? 's' : '');
+  emptyState.style.display = n === 0 ? 'block' : 'none';
+}
+
+filterChips.addEventListener('click', e => {
+  const btn = e.target.closest('.chip-btn');
+  if (!btn) return;
+  document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  update();
+});
+
+update();
 </script>
