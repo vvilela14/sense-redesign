@@ -82,12 +82,12 @@
       </a>
       <nav>
         <ul class="sense-nav-links">
-          <li><a href="${base}index.html#especialidades">Especialidades</a></li>
+          <li><a href="${base}especialistas">Especialidades</a></li>
           <li><a href="${base}index.html#exames">Exames</a></li>
           <li><a href="${base}index.html#checkup">Check-up</a></li>
         </ul>
       </nav>
-      <a href="${base}especialistas.html" class="sense-nav-cta">
+      <a href="${base}especialistas" class="sense-nav-cta">
         Encontre um Especialista
       </a>
     </div>
