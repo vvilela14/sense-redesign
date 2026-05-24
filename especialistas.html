@@ -95,6 +95,7 @@
       overflow:hidden;
       transition:transform .2s,box-shadow .2s;
       min-height:0;
+      cursor:pointer;
     }
     .doctor-card:hover{transform:translateY(-2px);box-shadow:rgba(0,0,0,.05) 0 0 0 1px,rgba(0,0,0,.1) 0 8px 20px;}
     /* foto */
@@ -125,7 +126,7 @@
     .ig-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted);transition:color .15s;}
     .ig-link:hover{color:var(--primary);}
     .card-actions{display:flex;gap:6px;flex-shrink:0;}
-    .btn-sm{padding:6px 12px;font-size:12px;font-weight:700;border-radius:var(--r-full);display:inline-flex;align-items:center;gap:5px;cursor:pointer;transition:all .15s;text-decoration:none;}
+    .btn-sm{padding:9px 18px;font-size:14px;font-weight:700;border-radius:var(--r-full);display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:all .15s;text-decoration:none;white-space:nowrap;}
     .btn-outline-sm{border:1.5px solid var(--hairline);background:transparent;color:var(--ink);}
     .btn-outline-sm:hover{border-color:var(--ink);}
     .btn-primary-sm{background:var(--primary);border:none;color:#fff;}
@@ -190,7 +191,7 @@
 <section class="specialists-section">
   <div class="container">
     <div class="specialists-grid" id="specialistsGrid">
-    <div class="doctor-card" data-name="dra luciana pontes" data-specialty="ginecologista">
+    <div class="doctor-card" data-href="luciana-pontes-ginecologista" data-name="dra luciana pontes" data-specialty="ginecologista">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">A</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -216,7 +217,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dr rafael f. gervásio" data-specialty="ortopedista e traumatologista">
+    <div class="doctor-card" data-href="rafael-f-gervasio-ortopedista-e-traumatologista" data-name="dr rafael f. gervásio" data-specialty="ortopedista e traumatologista">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">R</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -242,7 +243,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="matheus andrade de carvalho" data-specialty="fisioterapeuta">
+    <div class="doctor-card" data-href="matheus-andrade-de-carvalho-fisioterapeuta" data-name="matheus andrade de carvalho" data-specialty="fisioterapeuta">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">M</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -268,7 +269,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dra isa beatriz carminatti batista" data-specialty="ginecologista e obstetra">
+    <div class="doctor-card" data-href="isa-beatriz-carminatti-batista-ginecologista-e-obstetra" data-name="dra isa beatriz carminatti batista" data-specialty="ginecologista e obstetra">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">A</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -294,7 +295,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dra thayna karolina gomes fernandes" data-specialty="pediatria">
+    <div class="doctor-card" data-href="thayna-karolina-gomes-fernandes-pediatria" data-name="dra thayna karolina gomes fernandes" data-specialty="pediatria">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">A</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -320,7 +321,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="carolina cantuária" data-specialty="psicóloga">
+    <div class="doctor-card" data-href="carolina-cantuaria-psicologa" data-name="carolina cantuária" data-specialty="psicóloga">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">C</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -346,7 +347,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dr gilson josé de lima" data-specialty="urologista">
+    <div class="doctor-card" data-href="gilson-jose-de-lima-urologista" data-name="dr gilson josé de lima" data-specialty="urologista">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">G</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -372,7 +373,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dr fernando augusto lopes marques" data-specialty="cirurgião vascular">
+    <div class="doctor-card" data-href="fernando-augusto-lopes-marques-cirurgiao-vascular" data-name="dr fernando augusto lopes marques" data-specialty="cirurgião vascular">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">F</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -398,7 +399,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="claudia valeriano" data-specialty="estética avançada">
+    <div class="doctor-card" data-href="claudia-valeriano-estetica-avancada" data-name="claudia valeriano" data-specialty="estética avançada">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">C</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -424,7 +425,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dra patrícia naves de resende " data-specialty="pneumologista">
+    <div class="doctor-card" data-href="patricia-naves-de-resende-pneumologista" data-name="dra patrícia naves de resende " data-specialty="pneumologista">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">A</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -450,7 +451,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dra josiane gabriela de souza silva" data-specialty="infectologista">
+    <div class="doctor-card" data-href="josiane-gabriela-de-souza-silva-infectologista" data-name="dra josiane gabriela de souza silva" data-specialty="infectologista">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">A</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -476,7 +477,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="dr yoan loyarte lorenzo" data-specialty="médico clínico geral">
+    <div class="doctor-card" data-href="yoan-loyarte-lorenzo-medico-clinico-geral" data-name="dr yoan loyarte lorenzo" data-specialty="médico clínico geral">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">Y</div></div>
       <div class="card-content">
         <div class="card-top-row">
@@ -502,7 +503,7 @@
         </div>
       </div>
     </div>
-    <div class="doctor-card" data-name="zelinda cruvinel" data-specialty="psicóloga">
+    <div class="doctor-card" data-href="zelinda-cruvinel-psicologa" data-name="zelinda cruvinel" data-specialty="psicóloga">
       <div class="card-photo-wrap"><div class="doctor-avatar-placeholder">Z</div></div>
       <div class="card-content">
         <div class="card-top-row">
