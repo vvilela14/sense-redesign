@@ -28,7 +28,7 @@
     /* NAV */
     .nav{height:72px;border-bottom:1px solid var(--hairline);position:sticky;top:0;background:var(--canvas);z-index:100;}
     .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;}
-    .logo-img{height:36px;width:auto;}
+    .logo-img{height:36px !important;width:auto !important;}
     .nav-links{display:flex;gap:28px;}
     .nav-link{font-size:14px;font-weight:500;color:var(--body);transition:color .15s;}
     .nav-link:hover{color:var(--primary);}
@@ -43,7 +43,7 @@
     .page-hero h1{font-size:clamp(32px,4.5vw,54px);font-weight:800;margin:0 0 16px;letter-spacing:-.03em;color:var(--ink);line-height:1.05;}
     .page-hero p{font-size:16px;margin:0 0 0;color:var(--muted);max-width:480px;line-height:1.6;}
     .page-hero-right{position:relative;display:flex;justify-content:flex-end;align-items:flex-end;height:320px;}
-    .hero-doctor-img{height:340px;width:auto;object-fit:contain;object-position:bottom center;position:relative;z-index:2;display:block;}
+    .hero-doctor-img{height:340px;width:auto;object-fit:contain;object-position:bottom center;position:relative;z-index:2;display:block;mix-blend-mode:multiply;}
     .hero-search-bar{position:relative;z-index:10;background:#fff;border-radius:16px;box-shadow:0 2px 24px rgba(0,0,0,.10);padding:20px 24px;display:grid;grid-template-columns:1fr 220px;gap:16px;margin:0 0 32px;border:1px solid var(--hairline);}
     .hero-search-wrap{display:flex;flex-direction:column;gap:6px;}
     .hero-search-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
@@ -82,7 +82,7 @@
 
     /* GRID — 2 cols */
     .specialists-section{padding:32px 0 72px;}
-    .specialists-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+    .specialists-grid{display:grid !important;grid-template-columns:repeat(2,1fr) !important;gap:14px !important;}
     @media(max-width:860px){.specialists-grid{grid-template-columns:1fr;}}
     /* ── CARD — novo layout ── */
     .doctor-card{
@@ -142,7 +142,7 @@
 <body>
 <header class="nav">
   <div class="container nav-inner">
-    <a href="index.html"><img src="images/brand/sense-logo.png" alt="Sense" class="logo-img"/></a>
+    <a href="index.html"><img src="images/brand/sense-logo.png" alt="Sense" class="logo-img" style="height:36px;width:auto;"/></a>
     <nav class="nav-links">
       <a href="index.html#especialidades" class="nav-link">Especialidades</a>
       <a href="especialistas.html" class="nav-link">Profissionais</a>
