@@ -77,6 +77,11 @@
       display: block;
     }
     .footer-brand .logo-img { height: 52px; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
     .nav-links {
       display: flex; gap: 104px;
       align-items: center;
@@ -1011,14 +1016,16 @@
       <a href="/" class="logo" aria-label="Sense">
         <img src="images/brand/sense-logo.png" alt="Sense" class="logo-img" />
       </a>
-      <nav class="nav-links">
-        <a href="#especialidades" class="nav-link">Especialidades</a>
-        <a href="#exames" class="nav-link">Exames</a>
-        <a href="#checkup" class="nav-link">Check-up</a>
-      </nav>
-      <a href="especialistas.html" class="nav-cta">
-        Encontre um Especialista
-      </a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="#especialidades" class="nav-link">Especialidades</a>
+          <a href="#exames" class="nav-link">Exames</a>
+          <a href="#checkup" class="nav-link">Check-up</a>
+        </nav>
+        <a href="especialistas" class="nav-cta">
+          Encontre um Especialista
+        </a>
+      </div>
     </div>
   </header>
 
