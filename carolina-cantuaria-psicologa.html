@@ -65,6 +65,9 @@
   .profile-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;}
   .profile-list li{font-size:14px;color:#1f3340;padding-left:14px;position:relative;line-height:1.5;}
   .profile-list li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:#e06253;}
+  /* FOOTER */
+  .page-footer{background:#062533;color:rgba(255,255,255,.5);text-align:center;padding:24px;font-size:13px;margin-top:60px;}
+  .page-footer a{color:#ffd0b2;}
 
   /* LOCATION SECTION */
   .location-section{background:#fff;padding:72px 0 80px;}
@@ -90,7 +93,7 @@
 <section class="profile-header">
   <div class="container">
     <div class="profile-header-inner">
-      <div class="profile-photo-wrap"><div class="profile-avatar">C</div></div>
+      <div class="profile-photo-wrap"><img src="https://static.wixstatic.com/media/a07564_30d5adc3f65d4fd9b5301e4abd10ef05~mv2.png" alt="" class="profile-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="profile-avatar" style="display:none">C</div></div>
       <div class="profile-info">
         <a href="especialistas.html" class="back-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -171,6 +174,7 @@
   </div>
 </section>
 
-
-<script src="footer.js"></script>
+<footer class="page-footer">
+  <p>© 2025 Sense Consulta · Av. Leopoldino de Oliveira, 2025, Uberaba/MG · <a href="especialistas.html">← Todos os especialistas</a></p>
+</footer>
 </body></html>
