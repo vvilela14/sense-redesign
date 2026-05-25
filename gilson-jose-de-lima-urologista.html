@@ -32,8 +32,8 @@
   .btn-agendar:hover{background:#c64f41;}
   /* MAIN SECTION */
   .profile-main-section{background:#f7f7f7;border-radius:20px;padding:36px;margin:0 0 32px;}
-  .main-section-inner{display:grid;grid-template-columns:1fr;gap:24px;}
-  
+  .main-section-inner{display:grid;grid-template-columns:1fr;gap:0;}
+  @media(max-width:780px){.main-section-inner{grid-template-columns:1fr;}}
   .section-title-lg{font-size:22px;font-weight:800;margin-bottom:16px;letter-spacing:-.01em;}
   .consult-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
   .consult-chip{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#6a7a85;}
@@ -45,17 +45,17 @@
   .location-name{font-size:14px;font-weight:700;color:#062533;margin-bottom:2px;}
   .location-addr{font-size:13px;color:#6a7a85;line-height:1.6;}
   /* CALENDAR */
-  
-  
-  
-  
+  .calendar-widget{background:#fff;border-radius:14px;border:1px solid #eaeaea;overflow:hidden;}
+  .cal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #f3f3f3;}
+  .cal-month{font-size:14px;font-weight:700;}
+  .cal-nav{background:none;border:none;font-size:18px;color:#6a7a85;cursor:pointer;padding:0 4px;line-height:1;}
   .cal-nav:hover{color:#e06253;}
-  
+  .cal-table{width:100%;border-collapse:collapse;font-size:13px;}
   .cal-table thead th{padding:8px 4px;text-align:center;font-size:11px;font-weight:600;color:#6a7a85;text-transform:lowercase;}
   .cal-table td{padding:7px 4px;text-align:center;color:#1f3340;cursor:pointer;border-radius:6px;}
   .cal-day:hover{background:#fbf3ec;color:#e06253;}
-  
-  
+  .cal-today{background:#e06253;color:#fff !important;border-radius:6px;font-weight:700;}
+  .cal-weekend{color:#6a7a85;}
   /* CONTENT SECTIONS */
   .content-section{background:#f7f7f7;border-radius:20px;padding:32px;margin-bottom:20px;}
   .content-title{font-size:18px;font-weight:800;margin-bottom:20px;letter-spacing:-.01em;}
@@ -118,17 +118,8 @@
       <div>
         <h2 class="section-title-lg">Urologista</h2>
         <div class="consult-row"><span class="consult-chip">🏥 Presencial</span><span class="consult-chip">🤝 Consulta Particular</span><span class="consult-chip">🤝 Unimed</span></div>
-        <div class="subsection-title">Tratamentos</div><div class="treat-chips"><span class="treat-chip">Cálculo renal</span><span class="treat-chip">Incontinência urinária</span><span class="treat-chip">Infecção de urina</span><span class="treat-chip">Avaliação da próstata</span></div>
-        <div class="location-block">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span class="subsection-title" style="margin:0;">Localização</span>
-          </div>
-          <p class="location-name">Clínica Sense</p>
-          <p class="location-addr">Avenida Leopoldino de Oliveira, 2025 - Estados Unidos<br/>Uberaba - MG | 38026-435</p>
-        </div>
-      </div>
+        <div class="subsection-title">Tratamentos</div><div class="treat-chips"><span class="treat-chip">Cálculo renal</span><span class="treat-chip">Incontinência urinária</span><span class="treat-chip">Infecção de urina</span><span class="treat-chip">Avaliação da próstata</span></div></div>
       <div>
-    
     </div>
   </div>
 <div class="content-section"><h3 class="content-title">Formação e Especialização</h3><div class="content-subtitle">Formação Acadêmica</div><ul class="profile-list"><li>Gadruado em medicina pela UFTM</li><li>Especialização em cirurgia geral e em Urologia pela UFTM</li><li>Mestrado na USP Ribeirão Preto</li></ul></div><div class="content-section"><h3 class="content-title">Quando consultar</h3><p class="content-text">Quando estiver sentindo: cólica renal, dor para urinar, sangue na urina, dificuldade para segurar o xixi, avaliação de próstata, alteração nos testiculos.</p></div></div>
