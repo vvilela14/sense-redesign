@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Área do Profissional — Sense</title>
+<link rel="icon" type="image/png" href="images/brand/Sense-icon-S.png"/>
+<link rel="preconnect" href="https://api.fontshare.com"/>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap"/>
+<style>
+:root{
+  --primary:#e06253;--primary-hover:#c64f41;--primary-soft:#ffd0b2;
+  --primary-cream:#fbf3ec;--consulta:#750d37;--pink-soft:#feddd6;
+  --ink:#062533;--body:#1f3340;--muted:#6a7a85;--hairline:#eaeaea;
+  --hairline-soft:#f3f3f3;--canvas:#ffffff;--surface-soft:#f7f7f7;
+  --accent-blue:#0d5074;--ok:#16a34a;--err:#dc2626;
+  --r-sm:8px;--r-md:14px;--r-lg:20px;--r-full:9999px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Satoshi',-apple-system,sans-serif;color:var(--ink);background:var(--surface-soft);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;border:none;}
+.container{max-width:820px;margin:0 auto;padding:0 20px;}
+
+/* NAV */
+.nav{height:64px;background:var(--ink);display:flex;align-items:center;}
+.nav .container{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.nav-logo{height:30px;width:auto;}
+.nav-user{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.7);font-size:13px;}
+.nav-logout{background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:600;padding:7px 14px;border-radius:var(--r-full);transition:background .15s;}
+.nav-logout:hover{background:rgba(255,255,255,.2);}
+
+/* LOADING */
+#loading{display:flex;align-items:center;justify-content:center;min-height:70vh;flex-direction:column;gap:16px;}
+.spinner{width:36px;height:36px;border:3px solid var(--hairline);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#loading p{color:var(--muted);font-size:14px;}
+
+/* AUTH SCREEN */
+#auth-screen{display:none;min-height:calc(100vh - 64px);align-items:center;justify-content:center;padding:32px 20px;}
+.auth-card{background:#fff;border-radius:var(--r-lg);border:1px solid var(--hairline);max-width:420px;width:100%;padding:40px 36px;}
+.auth-logo{height:36px;margin:0 auto 24px;display:block;}
+.auth-card h1{font-size:22px;font-weight:800;text-align:center;letter-spacing:-.02em;margin-bottom:6px;}
+.auth-card .sub{font-size:14px;color:var(--muted);text-align:center;margin-bottom:28px;}
+.auth-tabs{display:flex;gap:6px;background:var(--surface-soft);padding:4px;border-radius:var(--r-md);margin-bottom:24px;}
+.auth-tab{flex:1;padding:9px;font-size:14px;font-weight:600;color:var(--muted);background:none;border-radius:10px;transition:all .15s;}
+.auth-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+
+/* CONTENT */
+#app{display:none;padding:32px 0 80px;}
+.page-title{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
+.page-sub{font-size:14px;color:var(--muted);margin-bottom:8px;}
+.profile-link-box{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--primary-cream);border-radius:var(--r-md);padding:12px 16px;font-size:13px;color:var(--ink);margin-bottom:24px;}
+.profile-link-box a{color:var(--primary);font-weight:600;}
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:var(--r-full);}
+.status-pill.pub{background:#dcfce7;color:var(--ok);}
+.status-pill.unpub{background:#fef3c7;color:#b45309;}
+
+/* SECTION CARDS */
+.section-card{background:#fff;border-radius:var(--r-lg);border:1px solid var(--hairline);margin-bottom:18px;overflow:hidden;}
+.section-head{padding:16px 24px;border-bottom:1px solid var(--hairline-soft);display:flex;align-items:center;gap:10px;}
+.section-num{width:26px;height:26px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;}
+.section-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);}
+.section-body{padding:24px;}
+
+.field-row{display:flex;gap:16px;margin-bottom:16px;}
+.field-row:last-child{margin-bottom:0;}
+.field{display:flex;flex-direction:column;gap:6px;flex:1;}
+.field.w-sm{flex:0 0 130px;}
+.field.w-xs{flex:0 0 100px;}
+@media(max-width:600px){.field-row{flex-direction:column;}.field.w-sm,.field.w-xs{flex:1;}}
+label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);opacity:.65;}
+label .req{color:var(--primary);margin-left:2px;}
+input[type=text],input[type=email],input[type=password],input[type=number],select,textarea{
+  width:100%;padding:11px 13px;border:1.5px solid var(--hairline);border-radius:10px;font-size:14px;
+  color:var(--ink);background:#fff;font-family:inherit;outline:none;transition:border-color .15s;appearance:none;-webkit-appearance:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(224,98,83,.1);}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23062533' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer;}
+textarea{resize:vertical;min-height:90px;line-height:1.55;}
+.hint{font-size:11px;color:var(--muted);line-height:1.4;}
+.assoc-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(224,98,83,.08);color:var(--primary);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:6px;width:fit-content;}
+
+/* TAGS */
+.tags-box{min-height:46px;padding:6px 10px;border:1.5px solid var(--hairline);border-radius:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;cursor:text;background:#fff;transition:border-color .15s;}
+.tags-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(224,98,83,.1);}
+.tag-pill{display:flex;align-items:center;gap:5px;background:var(--primary-soft);color:#8a3a28;font-size:12px;font-weight:600;padding:3px 6px 3px 11px;border-radius:var(--r-full);}
+.tag-pill .x{cursor:pointer;opacity:.55;font-size:15px;line-height:1;background:none;border:none;color:inherit;padding:0 2px;}
+.tag-pill .x:hover{opacity:1;}
+.tag-input{border:none!important;outline:none!important;box-shadow:none!important;padding:4px!important;font-size:13px;background:transparent!important;min-width:120px;flex:1;height:28px;}
+.tags-counter{font-size:11px;color:var(--muted);margin-top:4px;text-align:right;}
+.tags-counter.over{color:var(--err);}
+
+/* UPLOAD */
+.upload-area{border:1.5px dashed var(--hairline);border-radius:12px;padding:18px;text-align:center;cursor:pointer;transition:all .15s;position:relative;}
+.upload-area:hover{border-color:var(--primary);background:rgba(224,98,83,.03);}
+.upload-area .ico{font-size:26px;color:#c9c9c9;}
+.upload-area p{font-size:13px;color:var(--muted);margin-top:4px;}
+.upload-area .pick{color:var(--primary);font-weight:600;}
+.foto-preview{width:96px;height:96px;border-radius:12px;object-fit:cover;border:2px solid var(--hairline);margin:0 auto 10px;}
+
+.divider{height:1px;background:var(--hairline-soft);margin:20px 0;}
+
+/* ACTIONS */
+.actions{display:flex;gap:12px;align-items:center;margin-top:24px;position:sticky;bottom:0;background:linear-gradient(transparent,var(--surface-soft) 40%);padding:16px 0 8px;}
+.btn-primary{flex:1;background:var(--primary);color:#fff;border-radius:var(--r-full);padding:14px 28px;font-size:15px;font-weight:700;transition:background .15s,transform .1s;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+.btn-primary:hover{background:var(--primary-hover);}
+.btn-primary:active{transform:scale(.99);}
+.btn-primary:disabled{opacity:.55;cursor:not-allowed;}
+.btn-outline{background:#fff;color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--r-full);padding:12px 22px;font-size:14px;font-weight:600;transition:background .15s;}
+.btn-outline:hover{background:rgba(224,98,83,.06);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:600;transition:transform .3s;z-index:999;max-width:90vw;text-align:center;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.err{background:var(--err);}
+.toast.ok{background:var(--ok);}
+.field-err{border-color:var(--err)!important;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <img src="images/brand/sense-logo-white.png" alt="Sense" class="nav-logo" onerror="this.src='images/brand/sense-logo.png'"/>
+    <div class="nav-user" id="navUser" style="display:none">
+      <span id="navEmail"></span>
+      <a class="nav-logout" id="btnLogout">Sair</a>
+    </div>
+  </div>
+</header>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="spinner"></div>
+  <p>Carregando…</p>
+</div>
+
+<!-- AUTH -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <img src="images/brand/sense-logo.png" alt="Sense" class="auth-logo"/>
+    <h1 id="authTitle">Acesse sua área</h1>
+    <p class="sub" id="authSub">Gerencie seu perfil profissional na Clínica Sense</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin">Entrar</button>
+      <button class="auth-tab" id="tabSignup">Criar conta</button>
+    </div>
+    <div class="field" style="margin-bottom:14px">
+      <label>E-mail</label>
+      <input type="email" id="authEmail" placeholder="seu@email.com" autocomplete="email"/>
+    </div>
+    <div class="field" style="margin-bottom:20px">
+      <label>Senha</label>
+      <input type="password" id="authPass" placeholder="Mínimo 6 caracteres" autocomplete="current-password"/>
+    </div>
+    <button class="btn-primary" id="btnAuth" style="width:100%">Entrar</button>
+    <p class="hint" id="authHint" style="text-align:center;margin-top:14px"></p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="container">
+    <h1 class="page-title">Meu perfil profissional</h1>
+    <p class="page-sub">As informações abaixo aparecem na sua página em clinicasense.com.br</p>
+    <div class="profile-link-box" id="linkBox">
+      <span id="statusPill"></span>
+      <span id="linkText"></span>
+    </div>
+
+    <!-- SEÇÃO 1 -->
+    <div class="section-card">
+      <div class="section-head"><div class="section-num">1</div><div class="section-name">Dados Pessoais</div></div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field w-xs">
+            <label>Tratamento</label>
+            <select id="tratamento"><option value="">—</option><option value="Dr.">Dr.</option><option value="Dra.">Dra.</option></select>
+          </div>
+          <div class="field">
+            <label>Nome completo <span class="req">*</span></label>
+            <input type="text" id="nome_completo" placeholder="Ex: Ana Paula Ferreira"/>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="field">
+          <label>Foto de perfil</label>
+          <img id="fotoPreview" class="foto-preview" style="display:none"/>
+          <div class="upload-area" id="fotoArea">
+            <div class="ico">⬆</div>
+            <p>Arraste ou <span class="pick">selecione uma foto</span></p>
+            <p class="hint" style="margin-top:2px">JPG ou PNG · máx. 5 MB · proporção 1:1 recomendada</p>
+          </div>
+          <input type="file" id="fotoInput" accept="image/jpeg,image/png,image/webp" style="display:none"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 2 -->
+    <div class="section-card">
+      <div class="section-head"><div class="section-num">2</div><div class="section-name">Formação Acadêmica</div></div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Categoria <span class="req">*</span></label>
+            <select id="categoria">
+              <option value="">Selecione</option>
+              <option>Médico</option><option>Dentista</option><option>Fisioterapeuta</option>
+              <option>Nutricionista</option><option>Psicólogo</option><option>Enfermeiro</option>
+              <option>Bioquímico</option><option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Especialidade <span class="req">*</span></label>
+            <input type="text" id="especialidade" placeholder="Ex: Cardiologista, Ortopedista"/>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field w-sm">
+            <span class="assoc-badge" id="assocBadge" style="display:none"><span id="assocSigla">CRM</span></span>
+            <label id="assocLabel">Associação de Classe</label>
+            <input type="text" id="associacao_sigla" placeholder="Selecione a categoria" disabled/>
+          </div>
+          <div class="field w-sm">
+            <label>Número de registro <span class="req">*</span></label>
+            <input type="text" id="numero_registro" placeholder="000000"/>
+          </div>
+          <div class="field w-xs">
+            <label>UF <span class="req">*</span></label>
+            <select id="uf">
+              <option value="">UF</option>
+              <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+              <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+              <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+              <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+              <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+              <option>SE</option><option>TO</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>RQE (opcional)</label>
+            <input type="text" id="rqe" placeholder="Registro de Qualificação de Especialista"/>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="field">
+          <label>Formação e especialização</label>
+          <textarea id="formacao_especializacao" placeholder="Liste graduação, residência e especializações, uma por linha."></textarea>
+          <span class="hint">Cada linha vira um item na sua página.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 3 -->
+    <div class="section-card">
+      <div class="section-head"><div class="section-num">3</div><div class="section-name">Conteúdo do Perfil</div></div>
+      <div class="section-body">
+        <div class="field">
+          <label>Tratamentos realizados <span class="req">*</span></label>
+          <div class="tags-box" id="tagsBox"><input class="tag-input" id="tagInput" type="text" placeholder="Digite e pressione Enter…" maxlength="45"/></div>
+          <div class="tags-counter" id="tagsCounter">0 tratamentos · máx. 45 caracteres por item</div>
+        </div>
+        <div class="divider"></div>
+        <div class="field">
+          <label>Sobre o profissional</label>
+          <textarea id="sobre" placeholder="Apresentação para os pacientes: abordagem, valores e diferenciais." style="min-height:110px"></textarea>
+        </div>
+        <div class="field" style="margin-top:16px">
+          <label>Quando se consultar</label>
+          <textarea id="quando_consultar" placeholder="Principais sinais e sintomas que indicam a consulta. Uma situação por linha."></textarea>
+          <span class="hint">Cada linha vira um item na lista da sua página.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 4 -->
+    <div class="section-card">
+      <div class="section-head"><div class="section-num">4</div><div class="section-name">Contato e Redes</div></div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field"><label>WhatsApp</label><input type="text" id="whatsapp" placeholder="(17) 99999-0000"/></div>
+          <div class="field"><label>Instagram</label><input type="text" id="instagram" placeholder="@seuusuario"/></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Site / LinkedIn</label><input type="text" id="site" placeholder="https://…"/></div>
+          <div class="field"><label>E-mail de contato</label><input type="text" id="email_contato" placeholder="contato@email.com"/></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-outline" id="btnPreview">Ver minha página</button>
+      <button class="btn-primary" id="btnSave"><span id="saveLabel">Salvar e publicar</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://lipienluttpbtcbffdhv.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxpcGllbmx1dHRwYnRjYmZmZGh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNTE2MDgsImV4cCI6MjA5NTcyNzYwOH0.v1m4ULoPDi54M7gPEEdyMCgp6zV2fyp0GUrMujLexn0';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const ASSOC = {'Médico':'CRM','Dentista':'CRO','Fisioterapeuta':'CREFITO','Nutricionista':'CRN','Psicólogo':'CRP','Enfermeiro':'Coren','Bioquímico':'CRQ','Outro':''};
+let tags = [];
+let currentUser = null;
+let existingId = null;
+let fotoFile = null;
+let authMode = 'login';
+
+const $ = id => document.getElementById(id);
+function toast(msg, type){const t=$('toast');t.textContent=msg;t.className='toast show'+(type?(' '+type):'');setTimeout(()=>t.className='toast',type==='err'?4000:2800);}
+function slugify(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').replace(/-+/g,'-');}
+
+/* ---------- AUTH UI ---------- */
+function setAuthMode(m){
+  authMode=m;
+  $('tabLogin').classList.toggle('active',m==='login');
+  $('tabSignup').classList.toggle('active',m==='signup');
+  $('btnAuth').textContent = m==='login'?'Entrar':'Criar conta';
+  $('authPass').autocomplete = m==='login'?'current-password':'new-password';
+  $('authHint').textContent='';
+}
+$('tabLogin').onclick=()=>setAuthMode('login');
+$('tabSignup').onclick=()=>setAuthMode('signup');
+
+$('btnAuth').onclick=async()=>{
+  const email=$('authEmail').value.trim(), pass=$('authPass').value;
+  if(!email||!pass){$('authHint').textContent='Preencha e-mail e senha.';return;}
+  if(pass.length<6){$('authHint').textContent='A senha precisa de ao menos 6 caracteres.';return;}
+  $('btnAuth').disabled=true;$('btnAuth').textContent='Aguarde…';
+  try{
+    if(authMode==='login'){
+      const {error}=await sb.auth.signInWithPassword({email,password:pass});
+      if(error)throw error;
+    }else{
+      const {data,error}=await sb.auth.signUp({email,password:pass});
+      if(error)throw error;
+      if(!data.session){$('authHint').textContent='Conta criada! Verifique seu e-mail para confirmar antes de entrar.';$('btnAuth').disabled=false;setAuthMode('login');return;}
+    }
+  }catch(e){
+    $('authHint').textContent = traduzErro(e.message);
+    $('btnAuth').disabled=false;$('btnAuth').textContent=authMode==='login'?'Entrar':'Criar conta';
+  }
+};
+function traduzErro(m){
+  if(/invalid login/i.test(m))return 'E-mail ou senha incorretos.';
+  if(/already registered/i.test(m))return 'Este e-mail já tem conta. Tente entrar.';
+  if(/email not confirmed/i.test(m))return 'Confirme seu e-mail antes de entrar.';
+  return m;
+}
+$('btnLogout').onclick=async()=>{await sb.auth.signOut();location.reload();};
+
+/* ---------- FORM LOGIC ---------- */
+$('categoria').onchange=function(){
+  const sigla=ASSOC[this.value];
+  const badge=$('assocBadge'),inp=$('associacao_sigla'),lbl=$('assocLabel');
+  if(sigla){badge.style.display='inline-flex';$('assocSigla').textContent=sigla;lbl.textContent=sigla;inp.value=sigla;inp.disabled=true;}
+  else if(this.value==='Outro'){badge.style.display='none';lbl.textContent='Associação de Classe';inp.disabled=false;inp.value='';inp.placeholder='Ex: CFF, CRBM';}
+  else{badge.style.display='none';lbl.textContent='Associação de Classe';inp.disabled=true;inp.value='';inp.placeholder='Selecione a categoria';}
+};
+
+const tagsBox=$('tagsBox'),tagInput=$('tagInput'),tagsCounter=$('tagsCounter');
+function renderTags(){
+  tagsBox.querySelectorAll('.tag-pill').forEach(e=>e.remove());
+  tags.forEach((t,i)=>{const p=document.createElement('div');p.className='tag-pill';p.innerHTML='<span></span><button class="x">×</button>';p.querySelector('span').textContent=t;p.querySelector('.x').onclick=()=>{tags.splice(i,1);renderTags();};tagsBox.insertBefore(p,tagInput);});
+  const n=tags.length;tagsCounter.className='tags-counter';tagsCounter.textContent=n+' tratamento'+(n!==1?'s':'')+' · máx. 45 caracteres por item';
+}
+tagsBox.onclick=()=>tagInput.focus();
+tagInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===','){e.preventDefault();const v=tagInput.value.trim().replace(/,$/,'');if(v&&v.length<=45&&!tags.includes(v)){tags.push(v);tagInput.value='';renderTags();}else if(v.length>45){tagsCounter.className='tags-counter over';tagsCounter.textContent='Esse item excede 45 caracteres';}}
+  if(e.key==='Backspace'&&tagInput.value===''&&tags.length){tags.pop();renderTags();}
+});
+
+$('fotoArea').onclick=()=>$('fotoInput').click();
+$('fotoInput').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  if(f.size>5*1024*1024){toast('A foto excede 5 MB','err');return;}
+  fotoFile=f;const r=new FileReader();r.onload=ev=>{$('fotoPreview').src=ev.target.result;$('fotoPreview').style.display='block';};r.readAsDataURL(f);
+};
+
+/* ---------- LOAD EXISTING PROFILE ---------- */
+function fillForm(p){
+  existingId=p.id;
+  $('tratamento').value=p.tratamento||'';
+  $('nome_completo').value=p.nome_completo||'';
+  $('categoria').value=p.categoria||'';$('categoria').onchange();
+  $('associacao_sigla').value=p.associacao_sigla||'';
+  $('numero_registro').value=p.numero_registro||'';
+  $('uf').value=p.uf||'';
+  $('rqe').value=p.rqe||'';
+  $('especialidade').value=p.especialidade||'';
+  $('formacao_especializacao').value=p.formacao_especializacao||'';
+  $('sobre').value=p.sobre||'';
+  $('quando_consultar').value=p.quando_consultar||'';
+  $('whatsapp').value=p.whatsapp||'';
+  $('instagram').value=p.instagram||'';
+  $('site').value=p.site||'';
+  $('email_contato').value=p.email_contato||'';
+  tags=Array.isArray(p.tratamentos)?p.tratamentos.slice():[];renderTags();
+  if(p.foto_url){$('fotoPreview').src=p.foto_url;$('fotoPreview').style.display='block';}
+  updateStatusBox(p);
+}
+function updateStatusBox(p){
+  const pub=p&&p.publicado;
+  $('statusPill').className='status-pill '+(pub?'pub':'unpub');
+  $('statusPill').textContent=pub?'● Publicado':'● Rascunho';
+  if(p&&p.slug){$('linkText').innerHTML='Sua página: <a href="perfil.html?id='+encodeURIComponent(p.slug)+'" target="_blank">clinicasense.com.br/perfil?id='+p.slug+'</a>';}
+  else{$('linkText').textContent='Sua página será publicada após salvar.';}
+}
+
+/* ---------- SAVE ---------- */
+function markErr(ids){ids.forEach(id=>$(id).classList.add('field-err'));}
+function clearErr(){document.querySelectorAll('.field-err').forEach(e=>e.classList.remove('field-err'));}
+
+$('btnSave').onclick=async()=>{
+  clearErr();
+  const nome=$('nome_completo').value.trim();
+  const categoria=$('categoria').value;
+  const especialidade=$('especialidade').value.trim();
+  const registro=$('numero_registro').value.trim();
+  const uf=$('uf').value;
+  const faltando=[];
+  if(!nome)faltando.push('nome_completo');
+  if(!categoria)faltando.push('categoria');
+  if(!especialidade)faltando.push('especialidade');
+  if(!registro)faltando.push('numero_registro');
+  if(!uf)faltando.push('uf');
+  if(!tags.length)faltando.push('tagInput');
+  if(faltando.length){markErr(faltando);toast('Preencha os campos obrigatórios','err');return;}
+
+  $('btnSave').disabled=true;$('saveLabel').textContent='Salvando…';
+  try{
+    let fotoUrl=$('fotoPreview').style.display==='block'?$('fotoPreview').src:null;
+    if(fotoFile){
+      const ext=fotoFile.name.split('.').pop().toLowerCase();
+      const path=currentUser.id+'/foto.'+ext;
+      const {error:upErr}=await sb.storage.from('perfis').upload(path,fotoFile,{upsert:true,contentType:fotoFile.type});
+      if(upErr)throw upErr;
+      const {data:pub}=sb.storage.from('perfis').getPublicUrl(path);
+      fotoUrl=pub.publicUrl+'?t='+Date.now();
+    }
+    const slug=slugify(nome+'-'+especialidade);
+    const row={
+      user_id:currentUser.id,
+      tratamento:$('tratamento').value||null,
+      nome_completo:nome,categoria,
+      associacao_sigla:$('associacao_sigla').value||null,
+      numero_registro:registro,uf,
+      rqe:$('rqe').value.trim()||null,
+      especialidade,
+      tratamentos:tags,
+      formacao_especializacao:$('formacao_especializacao').value.trim()||null,
+      sobre:$('sobre').value.trim()||null,
+      quando_consultar:$('quando_consultar').value.trim()||null,
+      whatsapp:$('whatsapp').value.trim()||null,
+      instagram:$('instagram').value.trim()||null,
+      site:$('site').value.trim()||null,
+      email_contato:$('email_contato').value.trim()||null,
+      foto_url:fotoUrl,slug,publicado:true
+    };
+    const {data,error}=await sb.from('profissionais').upsert(row,{onConflict:'user_id'}).select().single();
+    if(error)throw error;
+    existingId=data.id;fotoFile=null;updateStatusBox(data);
+    toast('Perfil publicado com sucesso!','ok');
+  }catch(e){
+    toast('Erro ao salvar: '+(e.message||e),'err');
+  }finally{
+    $('btnSave').disabled=false;$('saveLabel').textContent='Salvar e publicar';
+  }
+};
+
+$('btnPreview').onclick=()=>{
+  const slug=slugify($('nome_completo').value+'-'+$('especialidade').value);
+  if(!slug){toast('Salve o perfil primeiro','err');return;}
+  window.open('perfil.html?id='+encodeURIComponent(slug),'_blank');
+};
+
+/* ---------- BOOT ---------- */
+async function boot(){
+  const {data:{session}}=await sb.auth.getSession();
+  $('loading').style.display='none';
+  if(!session){$('auth-screen').style.display='flex';return;}
+  currentUser=session.user;
+  $('navUser').style.display='flex';$('navEmail').textContent=currentUser.email;
+  $('app').style.display='block';
+  const {data,error}=await sb.from('profissionais').select('*').eq('user_id',currentUser.id).maybeSingle();
+  if(error){toast('Erro ao carregar perfil','err');}
+  if(data){fillForm(data);}else{$('email_contato').value=currentUser.email;updateStatusBox(null);}
+}
+sb.auth.onAuthStateChange((event)=>{if(event==='SIGNED_IN'&&$('auth-screen').style.display!=='none'){location.reload();}});
+boot();
+</script>
+</body>
+</html>

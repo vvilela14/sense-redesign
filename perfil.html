@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Perfil — Sense</title>
+<link rel="icon" type="image/png" href="images/brand/Sense-icon-S.png"/>
+<link rel="preconnect" href="https://api.fontshare.com"/>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Satoshi',-apple-system,sans-serif;color:#062533;background:#fff;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.container{max-width:960px;margin:0 auto;padding:0 24px;}
+.profile-header{padding:48px 0 40px;background:#fff;}
+.profile-header-inner{display:flex;gap:32px;align-items:flex-start;}
+@media(max-width:680px){.profile-header-inner{flex-direction:column;gap:20px;}}
+.profile-photo-wrap{flex-shrink:0;}
+.profile-photo{width:220px;height:auto;border-radius:16px;object-fit:cover;object-position:top;border:2px solid #eaeaea;}
+.profile-avatar{width:200px;height:240px;border-radius:16px;background:linear-gradient(135deg,#fbf3ec,#feddd6);display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:800;color:#e06253;}
+.profile-info{flex:1;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#6a7a85;margin-bottom:20px;transition:color .15s;}
+.back-link:hover{color:#e06253;}
+.profile-name{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
+.profile-specialty-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.profile-specialty{font-size:17px;color:#1f3340;font-weight:500;}
+.verified-tag{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#16a34a;}
+.profile-crm{font-size:14px;color:#6a7a85;margin-bottom:4px;}
+.profile-rqe{font-size:14px;color:#6a7a85;margin-bottom:20px;}
+.profile-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-agendar{display:inline-flex;align-items:center;gap:8px;background:#e06253;color:#fff;font-size:15px;font-weight:600;padding:12px 24px;border-radius:9999px;cursor:pointer;transition:background .15s;white-space:nowrap;}
+.btn-agendar:hover{background:#c64f41;}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:#f7f7f7;color:#1f3340;font-size:15px;font-weight:600;padding:12px 22px;border-radius:9999px;transition:background .15s;}
+.btn-ghost:hover{background:#eee;}
+.profile-main-section{background:#f7f7f7;border-radius:20px;padding:36px;margin:0 0 32px;}
+.section-title-lg{font-size:22px;font-weight:800;margin-bottom:16px;letter-spacing:-.01em;}
+.content-section{background:#f7f7f7;border-radius:20px;padding:32px;margin-bottom:20px;}
+.content-title{font-size:18px;font-weight:800;margin-bottom:20px;letter-spacing:-.01em;}
+.content-subtitle{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6a7a85;margin-bottom:8px;margin-top:16px;}
+.content-subtitle:first-child{margin-top:0;}
+.content-text{font-size:14px;color:#1f3340;line-height:1.7;}
+.treat-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.treat-chip{background:#fff;border:1.5px solid #eaeaea;color:#1f3340;font-size:13px;font-weight:500;padding:5px 14px;border-radius:9999px;}
+.profile-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;}
+.profile-list li{font-size:14px;color:#1f3340;padding-left:14px;position:relative;line-height:1.5;}
+.profile-list li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:#e06253;}
+.contact-row{display:flex;gap:16px;flex-wrap:wrap;}
+.contact-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#0d5074;}
+.contact-link:hover{color:#e06253;}
+.page-footer{background:#062533;color:rgba(255,255,255,.5);text-align:center;padding:24px;font-size:13px;margin-top:60px;}
+.page-footer a{color:#ffd0b2;}
+#loading,#notfound{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;gap:16px;text-align:center;padding:0 24px;}
+.spinner{width:36px;height:36px;border:3px solid #eaeaea;border-top-color:#e06253;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#notfound{display:none;}
+#notfound h2{font-size:22px;font-weight:800;}
+#notfound p{color:#6a7a85;}
+#profile{display:none;}
+</style>
+</head>
+<body>
+
+<div id="loading"><div class="spinner"></div><p style="color:#6a7a85;font-size:14px">Carregando perfil…</p></div>
+
+<div id="notfound">
+  <h2>Perfil não encontrado</h2>
+  <p>Este profissional não está disponível ou ainda não publicou a página.</p>
+  <a href="especialistas.html" class="btn-agendar" style="margin-top:8px">Ver todos os profissionais</a>
+</div>
+
+<div id="profile">
+  <section class="profile-header">
+    <div class="container">
+      <div class="profile-header-inner">
+        <div class="profile-photo-wrap" id="photoWrap"></div>
+        <div class="profile-info">
+          <a href="especialistas.html" class="back-link">‹ Voltar</a>
+          <h1 class="profile-name" id="pName"></h1>
+          <div class="profile-specialty-row">
+            <span class="profile-specialty" id="pSpecialty"></span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+          <p class="profile-crm" id="pCrm"></p>
+          <p class="profile-rqe" id="pRqe" style="display:none"></p>
+          <div class="profile-actions" id="pActions"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="content-section" id="secTratamentos" style="display:none">
+      <h3 class="content-title">Tratamentos</h3>
+      <div class="treat-chips" id="pTratamentos"></div>
+    </div>
+    <div class="content-section" id="secFormacao" style="display:none">
+      <h3 class="content-title">Formação e Especialização</h3>
+      <ul class="profile-list" id="pFormacao"></ul>
+    </div>
+    <div class="content-section" id="secSobre" style="display:none">
+      <h3 class="content-title">Sobre</h3>
+      <p class="content-text" id="pSobre"></p>
+    </div>
+    <div class="content-section" id="secQuando" style="display:none">
+      <h3 class="content-title">Quando se consultar</h3>
+      <ul class="profile-list" id="pQuando"></ul>
+    </div>
+    <div class="content-section" id="secContato" style="display:none">
+      <h3 class="content-title">Contato</h3>
+      <div class="contact-row" id="pContato"></div>
+    </div>
+  </div>
+
+  <footer class="page-footer">© Clínica Sense · <a href="especialistas.html">Ver todos os profissionais</a></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://lipienluttpbtcbffdhv.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxpcGllbmx1dHRwYnRjYmZmZGh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNTE2MDgsImV4cCI6MjA5NTcyNzYwOH0.v1m4ULoPDi54M7gPEEdyMCgp6zV2fyp0GUrMujLexn0';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON);
+const $=id=>document.getElementById(id);
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function lines(t){return (t||'').split('\n').map(l=>l.trim()).filter(Boolean);}
+function waNum(w){return (w||'').replace(/\D/g,'');}
+
+async function load(){
+  const slug=new URLSearchParams(location.search).get('id');
+  if(!slug){return notFound();}
+  const {data,error}=await sb.from('profissionais').select('*').eq('slug',slug).eq('publicado',true).maybeSingle();
+  $('loading').style.display='none';
+  if(error||!data){return notFound();}
+  render(data);
+}
+function notFound(){$('loading').style.display='none';$('notfound').style.display='flex';}
+
+function render(p){
+  document.title=(p.tratamento?p.tratamento+' ':'')+p.nome_completo+' — Sense';
+  const nomeCompleto=(p.tratamento?p.tratamento+' ':'')+p.nome_completo;
+  $('pName').textContent=nomeCompleto;
+  $('pSpecialty').textContent=p.especialidade||p.categoria||'';
+  if(p.foto_url){$('photoWrap').innerHTML='<img class="profile-photo" alt="'+esc(nomeCompleto)+'" src="'+esc(p.foto_url)+'" onerror="this.outerHTML=\'<div class=&quot;profile-avatar&quot;>'+esc((p.nome_completo||'?')[0])+'</div>\'"/>';}
+  else{$('photoWrap').innerHTML='<div class="profile-avatar">'+esc((p.nome_completo||'?')[0])+'</div>';}
+
+  const crmParts=[];
+  if(p.associacao_sigla||p.numero_registro){crmParts.push(((p.associacao_sigla||'')+' '+(p.numero_registro||'')).trim()+(p.uf?'/'+p.uf:''));}
+  $('pCrm').textContent=crmParts.join(' · ');
+  if(p.rqe){$('pRqe').style.display='block';$('pRqe').textContent='RQE: '+p.rqe;}
+
+  const acts=[];
+  if(p.whatsapp){acts.push('<a class="btn-agendar" target="_blank" href="https://api.whatsapp.com/send/?phone=55'+waNum(p.whatsapp)+'&text&type=phone_number">Agendar consulta</a>');}
+  if(p.instagram){const ig=p.instagram.replace('@','');acts.push('<a class="btn-ghost" target="_blank" href="https://instagram.com/'+esc(ig)+'">Instagram</a>');}
+  $('pActions').innerHTML=acts.join('');
+
+  if(Array.isArray(p.tratamentos)&&p.tratamentos.length){$('secTratamentos').style.display='block';$('pTratamentos').innerHTML=p.tratamentos.map(t=>'<span class="treat-chip">'+esc(t)+'</span>').join('');}
+  const formLines=lines(p.formacao_especializacao);
+  if(formLines.length){$('secFormacao').style.display='block';$('pFormacao').innerHTML=formLines.map(l=>'<li>'+esc(l)+'</li>').join('');}
+  if(p.sobre){$('secSobre').style.display='block';$('pSobre').textContent=p.sobre;}
+  const quandoLines=lines(p.quando_consultar);
+  if(quandoLines.length){$('secQuando').style.display='block';$('pQuando').innerHTML=quandoLines.map(l=>'<li>'+esc(l)+'</li>').join('');}
+
+  const ct=[];
+  if(p.whatsapp)ct.push('<a class="contact-link" target="_blank" href="https://api.whatsapp.com/send/?phone=55'+waNum(p.whatsapp)+'">WhatsApp</a>');
+  if(p.email_contato)ct.push('<a class="contact-link" href="mailto:'+esc(p.email_contato)+'">E-mail</a>');
+  if(p.site)ct.push('<a class="contact-link" target="_blank" href="'+esc(p.site)+'">Site</a>');
+  if(ct.length){$('secContato').style.display='block';$('pContato').innerHTML=ct.join('');}
+
+  $('profile').style.display='block';
+}
+load();
+</script>
+</body>
+</html>
