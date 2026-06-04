@@ -168,7 +168,13 @@ tr:hover td{background:rgba(6,37,51,.02);}
   <div class="container">
     <div class="page-header">
       <div><h1 class="page-title">Perfis Profissionais</h1><p class="page-sub">Gerencie os perfis publicados em clinicasense.com.br</p></div>
-      <a href="especialistas.html" target="_blank" style="font-size:13px;color:var(--primary);font-weight:600;">Ver site →</a>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <a href="especialistas.html" target="_blank" style="font-size:13px;color:var(--primary);font-weight:600;">Ver site →</a>
+        <button class="btn-save" id="btnNew" onclick="openCreate()" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Novo perfil
+        </button>
+      </div>
     </div>
 
     <div class="stats-row">
@@ -375,9 +381,22 @@ async function togglePub(id,pub){
 }
 
 /* ---- EDIT MODAL ---- */
+function openCreate(){
+  editingId=null;
+  $('modalTitle').textContent='Novo perfil profissional';
+  $('editId').value='';
+  $('eTrat').value='';$('eNome').value='';$('eCat').value='Médico';$('eEsp').value='';
+  $('eSigla').value='';$('eReg').value='';$('eUF').value='';$('eRqe').value='';
+  $('eTrats').value='';$('eForm').value='';$('eSobre').value='';$('eQuando').value='';
+  $('eWa').value='';$('eIg').value='';$('eSite').value='';$('eEmail').value='';
+  $('ePub').value='true';$('eSlug').value='';$('eFoto').value='';
+  $('btnSaveEdit').textContent='Criar perfil';
+  $('editModal').classList.remove('hidden');
+}
 function openEdit(id){
   const p=allProfs.find(p=>p.id===id);if(!p)return;
   editingId=id;
+  $('btnSaveEdit').textContent='Salvar alterações';
   $('modalTitle').textContent='Editando — '+(p.tratamento||'')+' '+p.nome_completo;
   $('editId').value=id;
   $('eTrat').value=p.tratamento||'';
@@ -420,12 +439,27 @@ async function saveEdit(){
     publicado:$('ePub').value==='true',slug:$('eSlug').value.trim()||null,
     foto_url:$('eFoto').value.trim()||null
   };
-  const {data,error}=await sb.from('profissionais').update(row).eq('id',editingId).select().single();
-  $('btnSaveEdit').disabled=false;$('btnSaveEdit').textContent='Salvar alterações';
+  // Gera slug automaticamente se vazio
+  if(!row.slug){
+    row.slug=(nome+'-'+(row.especialidade||'')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').replace(/-+/g,'-');
+  }
+  let data,error;
+  if(editingId){
+    ({data,error}=await sb.from('profissionais').update(row).eq('id',editingId).select().single());
+  }else{
+    ({data,error}=await sb.from('profissionais').insert(row).select().single());
+  }
+  $('btnSaveEdit').disabled=false;$('btnSaveEdit').textContent=editingId?'Salvar alterações':'Criar perfil';
   if(error){toast('Erro: '+error.message,'err');return;}
-  const idx=allProfs.findIndex(p=>p.id===editingId);
-  if(idx>=0)allProfs[idx]={...allProfs[idx],...data};
-  updateStats();renderTable();closeEdit();toast('Perfil atualizado!','ok');
+  if(editingId){
+    const idx=allProfs.findIndex(p=>p.id===editingId);
+    if(idx>=0)allProfs[idx]={...allProfs[idx],...data};
+    toast('Perfil atualizado!','ok');
+  }else{
+    allProfs.push(data);
+    toast('Perfil criado!','ok');
+  }
+  updateStats();renderTable();closeEdit();
 }
 
 /* ---- DELETE ---- */

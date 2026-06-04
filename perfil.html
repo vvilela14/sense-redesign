@@ -149,7 +149,8 @@ function render(p){
   if(p.rqe){$('pRqe').style.display='block';$('pRqe').textContent='RQE: '+p.rqe;}
 
   const acts=[];
-  if(p.whatsapp){acts.push('<a class="btn-agendar" target="_blank" href="https://api.whatsapp.com/send/?phone=55'+waNum(p.whatsapp)+'&text&type=phone_number">Agendar consulta</a>');}
+  // Botão fixo da Sense, sempre presente
+  acts.push('<a class="btn-agendar" target="_blank" href="https://api.whatsapp.com/send/?phone=5534999593207&text&type=phone_number&app_absent=0">Agendar Consulta</a>');
   if(p.instagram){const ig=p.instagram.replace('@','');acts.push('<a class="btn-ghost" target="_blank" href="https://instagram.com/'+esc(ig)+'">Instagram</a>');}
   $('pActions').innerHTML=acts.join('');
 
