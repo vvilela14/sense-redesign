@@ -42,6 +42,13 @@ img{max-width:100%;display:block;}
 .content-text{font-size:14px;color:#1f3340;line-height:1.7;}
 .treat-chips{display:flex;flex-wrap:wrap;gap:8px;}
 .treat-chip{background:#fff;border:1.5px solid #eaeaea;color:#1f3340;font-size:13px;font-weight:500;padding:5px 14px;border-radius:9999px;}
+.conv-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.conv-badge{background:#e06253;color:#fff;font-size:13px;font-weight:600;padding:5px 14px;border-radius:9999px;}
+.valores-grid{display:flex;flex-wrap:wrap;gap:14px;}
+.valor-card{background:#fff;border:1.5px solid #eaeaea;border-radius:14px;padding:16px 20px;flex:1;min-width:150px;}
+.valor-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6a7a85;margin-bottom:6px;}
+.valor-val{font-size:22px;font-weight:800;color:#062533;letter-spacing:-.01em;}
+.valor-val .unit{font-size:14px;font-weight:600;color:#6a7a85;}
 .profile-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;}
 .profile-list li{font-size:14px;color:#1f3340;padding-left:14px;position:relative;line-height:1.5;}
 .profile-list li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:#e06253;}
@@ -93,6 +100,14 @@ img{max-width:100%;display:block;}
     <div class="content-section" id="secTratamentos" style="display:none">
       <h3 class="content-title">Tratamentos</h3>
       <div class="treat-chips" id="pTratamentos"></div>
+    </div>
+    <div class="content-section" id="secConvenios" style="display:none">
+      <h3 class="content-title">Convênios atendidos</h3>
+      <div class="conv-chips" id="pConvenios"></div>
+    </div>
+    <div class="content-section" id="secValores" style="display:none">
+      <h3 class="content-title">Valores de Serviços e Procedimentos</h3>
+      <div class="valores-grid" id="pValores"></div>
     </div>
     <div class="content-section" id="secFormacao" style="display:none">
       <h3 class="content-title">Formação e Especialização</h3>
@@ -155,6 +170,20 @@ function render(p){
   $('pActions').innerHTML=acts.join('');
 
   if(Array.isArray(p.tratamentos)&&p.tratamentos.length){$('secTratamentos').style.display='block';$('pTratamentos').innerHTML=p.tratamentos.map(t=>'<span class="treat-chip">'+esc(t)+'</span>').join('');}
+  if(Array.isArray(p.convenios)&&p.convenios.length){$('secConvenios').style.display='block';$('pConvenios').innerHTML=p.convenios.map(c=>'<span class="conv-badge">'+esc(c)+'</span>').join('');}
+  // Valores de serviços e procedimentos
+  const vcards=[];
+  if(p.valor_consulta!=null&&p.valor_consulta!==''){
+    const v=Number(p.valor_consulta).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    vcards.push('<div class="valor-card"><div class="valor-lbl">Consulta particular</div><div class="valor-val"><span class="unit">R$ </span>'+v+'</div></div>');
+  }
+  if(p.desconto_avista!=null&&p.desconto_avista!==''){
+    vcards.push('<div class="valor-card"><div class="valor-lbl">Desconto à vista</div><div class="valor-val">'+esc(String(p.desconto_avista))+'<span class="unit">%</span></div></div>');
+  }
+  if(p.parcelamento!=null&&p.parcelamento!==''){
+    vcards.push('<div class="valor-card"><div class="valor-lbl">Parcelamento no cartão</div><div class="valor-val">até '+esc(String(p.parcelamento))+'<span class="unit">x</span></div></div>');
+  }
+  if(vcards.length){$('secValores').style.display='block';$('pValores').innerHTML=vcards.join('');}
   const formLines=lines(p.formacao_especializacao);
   if(formLines.length){$('secFormacao').style.display='block';$('pFormacao').innerHTML=formLines.map(l=>'<li>'+esc(l)+'</li>').join('');}
   if(p.sobre){$('secSobre').style.display='block';$('pSobre').textContent=p.sobre;}
@@ -162,7 +191,7 @@ function render(p){
   if(quandoLines.length){$('secQuando').style.display='block';$('pQuando').innerHTML=quandoLines.map(l=>'<li>'+esc(l)+'</li>').join('');}
 
   const ct=[];
-  if(p.whatsapp)ct.push('<a class="contact-link" target="_blank" href="https://api.whatsapp.com/send/?phone=55'+waNum(p.whatsapp)+'">WhatsApp</a>');
+  // WhatsApp é uso interno — não exibido na página pública
   if(p.email_contato)ct.push('<a class="contact-link" href="mailto:'+esc(p.email_contato)+'">E-mail</a>');
   if(p.site)ct.push('<a class="contact-link" target="_blank" href="'+esc(p.site)+'">Site</a>');
   if(ct.length){$('secContato').style.display='block';$('pContato').innerHTML=ct.join('');}
