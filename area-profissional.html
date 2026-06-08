@@ -102,6 +102,13 @@ textarea{resize:vertical;min-height:90px;line-height:1.55;}
 .tags-counter{font-size:11px;color:var(--muted);margin-top:4px;text-align:right;}
 .tags-counter.over{color:var(--err);}
 
+/* CONVÊNIOS */
+.conv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;}
+.conv-opt{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid var(--hairline);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--ink);transition:all .15s;user-select:none;background:#fff;}
+.conv-opt:hover{border-color:var(--primary);}
+.conv-opt input{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;flex-shrink:0;margin:0;padding:0;}
+.conv-opt.checked{border-color:var(--primary);background:rgba(224,98,83,.06);}
+
 /* UPLOAD */
 .upload-area{border:1.5px dashed var(--hairline);border-radius:12px;padding:18px;text-align:center;cursor:pointer;transition:all .15s;position:relative;}
 .upload-area:hover{border-color:var(--primary);background:rgba(224,98,83,.03);}
@@ -308,6 +315,11 @@ textarea{resize:vertical;min-height:90px;line-height:1.55;}
           <div class="tags-box" id="tagsBox"><input class="tag-input" id="tagInput" type="text" placeholder="Digite e pressione Enter…" maxlength="45"/></div>
           <div class="tags-counter" id="tagsCounter">0 tratamentos · máx. 45 caracteres por item</div>
         </div>
+        <div class="field" style="margin-top:16px">
+          <label>Convênios que atende</label>
+          <div class="conv-grid" id="conveniosBox"></div>
+          <span class="hint">Marque os convênios aceitos. Aparecem como selo na sua página.</span>
+        </div>
         <div class="divider"></div>
         <div class="field">
           <label>Sobre o profissional</label>
@@ -321,12 +333,39 @@ textarea{resize:vertical;min-height:90px;line-height:1.55;}
       </div>
     </div>
 
-    <!-- SEÇÃO 4 -->
+    <!-- SEÇÃO 4 — VALORES -->
     <div class="section-card">
-      <div class="section-head"><div class="section-num">4</div><div class="section-name">Contato e Redes</div></div>
+      <div class="section-head"><div class="section-num">4</div><div class="section-name">Valores de Serviços e Procedimentos</div></div>
       <div class="section-body">
         <div class="field-row">
-          <div class="field"><label>WhatsApp</label><input type="text" id="whatsapp" placeholder="(17) 99999-0000"/></div>
+          <div class="field">
+            <label>Valor consulta particular (R$)</label>
+            <input type="number" id="valor_consulta" min="0" step="0.01" placeholder="Ex: 350.00"/>
+          </div>
+          <div class="field">
+            <label>Desconto à vista (%)</label>
+            <input type="number" id="desconto_avista" min="0" max="100" step="1" placeholder="Ex: 10"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Parcelamento no cartão de crédito</label>
+          <select id="parcelamento">
+            <option value="">Sem parcelamento</option>
+            <option value="1">1x</option><option value="2">2x</option><option value="3">3x</option>
+            <option value="4">4x</option><option value="5">5x</option><option value="6">6x</option>
+            <option value="7">7x</option><option value="8">8x</option><option value="9">9x</option>
+            <option value="10">10x</option><option value="11">11x</option><option value="12">12x</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 5 -->
+    <div class="section-card">
+      <div class="section-head"><div class="section-num">5</div><div class="section-name">Contato e Redes</div></div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field"><label>WhatsApp</label><input type="text" id="whatsapp" placeholder="(17) 99999-0000"/><span class="hint">Uso interno — não aparece na sua página pública.</span></div>
           <div class="field"><label>Instagram</label><input type="text" id="instagram" placeholder="@seuusuario"/></div>
         </div>
         <div class="field-row">
@@ -352,7 +391,9 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
 const ASSOC = {'Médico':'CRM','Dentista':'CRO','Fisioterapeuta':'CREFITO','Nutricionista':'CRN','Psicólogo':'CRP','Enfermeiro':'Coren','Bioquímico':'CRQ','Outro':''};
+const CONVENIOS = ['Sense Consulta','Unimed','Evo Saúde','Medprev','Usisaúde','Hapvida','Bradesco Saúde','Cartão de Todos'];
 let tags = [];
+let convenios = [];
 let currentUser = null;
 let existingId = null;
 let fotoFile = null;
@@ -426,6 +467,21 @@ function renderTags(){
   tags.forEach((t,i)=>{const p=document.createElement('div');p.className='tag-pill';p.innerHTML='<span></span><button class="x">×</button>';p.querySelector('span').textContent=t;p.querySelector('.x').onclick=()=>{tags.splice(i,1);renderTags();};tagsBox.insertBefore(p,tagInput);});
   const n=tags.length;tagsCounter.className='tags-counter';tagsCounter.textContent=n+' tratamento'+(n!==1?'s':'')+' · máx. 45 caracteres por item';
 }
+function renderConvenios(){
+  const box=$('conveniosBox');
+  box.innerHTML=CONVENIOS.map(c=>{
+    const on=convenios.includes(c);
+    return '<label class="conv-opt'+(on?' checked':'')+'"><input type="checkbox" value="'+c.replace(/"/g,'&quot;')+'"'+(on?' checked':'')+'/>'+c+'</label>';
+  }).join('');
+  box.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.onchange=()=>{
+      const v=cb.value;
+      if(cb.checked){if(!convenios.includes(v))convenios.push(v);}
+      else{convenios=convenios.filter(x=>x!==v);}
+      cb.closest('.conv-opt').classList.toggle('checked',cb.checked);
+    };
+  });
+}
 tagsBox.onclick=()=>tagInput.focus();
 tagInput.addEventListener('keydown',e=>{
   if(e.key==='Enter'||e.key===','){e.preventDefault();const v=tagInput.value.trim().replace(/,$/,'');if(v&&v.length<=45&&!tags.includes(v)){tags.push(v);tagInput.value='';renderTags();}else if(v.length>45){tagsCounter.className='tags-counter over';tagsCounter.textContent='Esse item excede 45 caracteres';}}
@@ -458,13 +514,24 @@ function fillForm(p){
   $('site').value=p.site||'';
   $('email_contato').value=p.email_contato||'';
   tags=Array.isArray(p.tratamentos)?p.tratamentos.slice():[];renderTags();
+  convenios=Array.isArray(p.convenios)?p.convenios.slice():[];renderConvenios();
+  $('valor_consulta').value=(p.valor_consulta!=null)?p.valor_consulta:'';
+  $('desconto_avista').value=(p.desconto_avista!=null)?p.desconto_avista:'';
+  $('parcelamento').value=(p.parcelamento!=null)?String(p.parcelamento):'';
   if(p.foto_url){$('fotoPreview').src=p.foto_url;$('fotoPreview').style.display='block';}
   updateStatusBox(p);
 }
 function updateStatusBox(p){
+  const sp=$('statusPill');
+  if(p && !p.aprovado){
+    sp.className='status-pill unpub';
+    sp.textContent='● Aguardando aprovação';
+    $('linkText').textContent='Seu perfil foi enviado e está aguardando aprovação da equipe Sense. Você será avisado quando for publicado.';
+    return;
+  }
   const pub=p&&p.publicado;
-  $('statusPill').className='status-pill '+(pub?'pub':'unpub');
-  $('statusPill').textContent=pub?'● Publicado':'● Rascunho';
+  sp.className='status-pill '+(pub?'pub':'unpub');
+  sp.textContent=pub?'● Publicado':'● Rascunho';
   if(p&&p.slug){$('linkText').innerHTML='Sua página: <a href="perfil.html?id='+encodeURIComponent(p.slug)+'" target="_blank">clinicasense.com.br/perfil?id='+p.slug+'</a>';}
   else{$('linkText').textContent='Sua página será publicada após salvar.';}
 }
@@ -491,11 +558,13 @@ $('btnSave').onclick=async()=>{
 
   $('btnSave').disabled=true;$('saveLabel').textContent='Salvando…';
   try{
-    // Preserva a foto_url atual se não há arquivo novo
+    // Preserva a foto_url atual e o estado de aprovação se não há arquivo novo
     let fotoUrl = null;
+    let jaAprovado = false;
     if(existingId){
-      const {data:cur}=await sb.from('profissionais').select('foto_url').eq('id',existingId).maybeSingle();
+      const {data:cur}=await sb.from('profissionais').select('foto_url,aprovado').eq('id',existingId).maybeSingle();
       fotoUrl = (cur && cur.foto_url) ? cur.foto_url : null;
+      jaAprovado = !!(cur && cur.aprovado);
     }
     if(fotoFile){
       const ext=fotoFile.name.split('.').pop().toLowerCase();
@@ -506,6 +575,9 @@ $('btnSave').onclick=async()=>{
       fotoUrl=pub.publicUrl+'?t='+Date.now();
     }
     const slug=slugify(nome+'-'+especialidade);
+    const valorConsulta = $('valor_consulta').value!==''? parseFloat($('valor_consulta').value) : null;
+    const descAvista = $('desconto_avista').value!==''? parseInt($('desconto_avista').value,10) : null;
+    const parc = $('parcelamento').value!==''? parseInt($('parcelamento').value,10) : null;
     const row={
       user_id:currentUser.id,
       tratamento:$('tratamento').value||null,
@@ -515,6 +587,10 @@ $('btnSave').onclick=async()=>{
       rqe:$('rqe').value.trim()||null,
       especialidade,
       tratamentos:tags,
+      convenios:convenios,
+      valor_consulta:valorConsulta,
+      desconto_avista:descAvista,
+      parcelamento:parc,
       formacao_especializacao:$('formacao_especializacao').value.trim()||null,
       sobre:$('sobre').value.trim()||null,
       quando_consultar:$('quando_consultar').value.trim()||null,
@@ -522,12 +598,15 @@ $('btnSave').onclick=async()=>{
       instagram:$('instagram').value.trim()||null,
       site:$('site').value.trim()||null,
       email_contato:$('email_contato').value.trim()||null,
-      foto_url:fotoUrl,slug,publicado:true
+      foto_url:fotoUrl,slug,
+      // Aprovação: perfis já aprovados continuam publicados; novos ficam pendentes
+      aprovado:jaAprovado,
+      publicado:jaAprovado
     };
     const {data,error}=await sb.from('profissionais').upsert(row,{onConflict:'user_id'}).select().single();
     if(error)throw error;
     existingId=data.id;fotoFile=null;updateStatusBox(data);
-    toast('Perfil publicado com sucesso!','ok');
+    toast(jaAprovado?'Perfil atualizado com sucesso!':'Perfil enviado para aprovação!','ok');
   }catch(e){
     toast('Erro ao salvar: '+(e.message||e),'err');
   }finally{
@@ -602,7 +681,7 @@ async function boot(){
   $('app').style.display='block';
   const {data,error}=await sb.from('profissionais').select('*').eq('user_id',currentUser.id).maybeSingle();
   if(error){toast('Erro ao carregar perfil','err');}
-  if(data){fillForm(data);}else{$('email_contato').value=currentUser.email;updateStatusBox(null);}
+  if(data){fillForm(data);}else{$('email_contato').value=currentUser.email;renderConvenios();updateStatusBox(null);}
 }
 boot();
 </script>
