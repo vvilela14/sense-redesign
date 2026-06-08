@@ -105,10 +105,6 @@ img{max-width:100%;display:block;}
       <h3 class="content-title">Convênios atendidos</h3>
       <div class="conv-chips" id="pConvenios"></div>
     </div>
-    <div class="content-section" id="secValores" style="display:none">
-      <h3 class="content-title">Valores de Serviços e Procedimentos</h3>
-      <div class="valores-grid" id="pValores"></div>
-    </div>
     <div class="content-section" id="secFormacao" style="display:none">
       <h3 class="content-title">Formação e Especialização</h3>
       <ul class="profile-list" id="pFormacao"></ul>
@@ -171,19 +167,6 @@ function render(p){
 
   if(Array.isArray(p.tratamentos)&&p.tratamentos.length){$('secTratamentos').style.display='block';$('pTratamentos').innerHTML=p.tratamentos.map(t=>'<span class="treat-chip">'+esc(t)+'</span>').join('');}
   if(Array.isArray(p.convenios)&&p.convenios.length){$('secConvenios').style.display='block';$('pConvenios').innerHTML=p.convenios.map(c=>'<span class="conv-badge">'+esc(c)+'</span>').join('');}
-  // Valores de serviços e procedimentos
-  const vcards=[];
-  if(p.valor_consulta!=null&&p.valor_consulta!==''){
-    const v=Number(p.valor_consulta).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
-    vcards.push('<div class="valor-card"><div class="valor-lbl">Consulta particular</div><div class="valor-val"><span class="unit">R$ </span>'+v+'</div></div>');
-  }
-  if(p.desconto_avista!=null&&p.desconto_avista!==''){
-    vcards.push('<div class="valor-card"><div class="valor-lbl">Desconto à vista</div><div class="valor-val">'+esc(String(p.desconto_avista))+'<span class="unit">%</span></div></div>');
-  }
-  if(p.parcelamento!=null&&p.parcelamento!==''){
-    vcards.push('<div class="valor-card"><div class="valor-lbl">Parcelamento no cartão</div><div class="valor-val">até '+esc(String(p.parcelamento))+'<span class="unit">x</span></div></div>');
-  }
-  if(vcards.length){$('secValores').style.display='block';$('pValores').innerHTML=vcards.join('');}
   const formLines=lines(p.formacao_especializacao);
   if(formLines.length){$('secFormacao').style.display='block';$('pFormacao').innerHTML=formLines.map(l=>'<li>'+esc(l)+'</li>').join('');}
   if(p.sobre){$('secSobre').style.display='block';$('pSobre').textContent=p.sobre;}
